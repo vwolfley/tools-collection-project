@@ -1,0 +1,74 @@
+[
+  {
+    "user_id": "user_001",
+    "tool_id": "12345",
+    "set_id": "set_001",
+    "serial_number": "SN12345678",
+    "condition": "Used",
+    "purchase_date": "2023-06-15",
+    "price": 120.00,
+    "location": "Garage",
+    "notes": "Replaced battery in Jan 2024",
+    "loanedTo": "John Green"
+  },
+  {
+    "user_id": "user_002",
+    "tool_id": "54321",
+    "set_id": "set_002",
+    "serial_number": "SN87654321",
+    "condition": "New",
+    "purchase_date": "2024-01-10",
+    "price": 250.00,
+    "location": "Workshop",
+    "notes": "Includes extra drill bits",
+    "loanedTo": "Sarah Lee"
+  },
+  {
+    "user_id": "user_003",
+    "tool_id": "67890",
+    "set_id": "set_003",
+    "serial_number": "SN11223344",
+    "condition": "Like New",
+    "purchase_date": "2023-08-20",
+    "price": 75.00,
+    "location": "Basement",
+    "notes": "Used only a few times",
+    "loanedTo": "Mike Roberts"
+  },
+  {
+    "user_id": "user_004",
+    "tool_id": "11223",
+    "set_id": "set_004",
+    "serial_number": "SN99887766",
+    "condition": "Used",
+    "purchase_date": "2022-11-05",
+    "price": 100.00,
+    "location": "Storage Shed",
+    "notes": "Slight rust on edges",
+    "loanedTo": "Lena White"
+  },
+  {
+    "user_id": "user_005",
+    "tool_id": "33445",
+    "set_id": "set_005",
+    "serial_number": "SN55667788",
+    "condition": "New",
+    "purchase_date": "2024-02-01",
+    "price": 180.00,
+    "location": "Garage",
+    "notes": "Complete set, never used",
+    "loanedTo": "Chris Black"
+  },
+  {
+    "user_id": "user_006",
+    "tool_id": "55667",
+    "set_id": "set_006",
+    "serial_number": "SN22334455",
+    "condition": "Used",
+    "purchase_date": "2023-12-25",
+    "price": 320.00,
+    "location": "Toolbox",
+    "notes": "Battery life has degraded",
+    "loanedTo": "Emily Brown"
+  }
+]

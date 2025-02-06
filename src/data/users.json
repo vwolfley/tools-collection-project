@@ -1,0 +1,50 @@
+[
+  {
+    "username": "Toolman66",
+    "password": "T00lPa$$word",
+    "firstName": "Vern",
+    "lastName": "Wolfley",
+    "email": "vwtools@tools.com",
+    "phoneNumber": "555-555-5555"
+  },
+  {
+    "username": "GadgetGuy99",
+    "password": "G@dG3tP@ssw0rd",
+    "firstName": "Sam",
+    "lastName": "Smith",
+    "email": "samtools@gadgets.com",
+    "phoneNumber": "555-123-4567"
+  },
+  {
+    "username": "ToolMaster42",
+    "password": "T00lM@st3r!4",
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alice@toolsmaster.com",
+    "phoneNumber": "555-234-5678"
+  },
+  {
+    "username": "FixItFred",
+    "password": "F1x!tF@bric4",
+    "firstName": "Fred",
+    "lastName": "Thompson",
+    "email": "fred@fixit.com",
+    "phoneNumber": "555-345-6789"
+  },
+  {
+    "username": "CraftyCarl",
+    "password": "Cr@ftyC@rl23",
+    "firstName": "Carl",
+    "lastName": "Davis",
+    "email": "carl@craftytools.com",
+    "phoneNumber": "555-456-7890"
+  },
+  {
+    "username": "TechTinker",
+    "password": "T3chT1nk3r@123",
+    "firstName": "Bob",
+    "lastName": "Miller",
+    "email": "bob@techtinker.com",
+    "phoneNumber": "555-567-8901"
+  }
+]

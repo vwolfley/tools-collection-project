@@ -1,0 +1,105 @@
+[
+  {
+    "id": "set_001",
+    "name": "Craftsman 10-Piece Wrench Set",
+    "brand": "Craftsman",
+    "category": "Hand Tool Set",
+    "image_url": "https://example.com/wrench-set.jpg",
+    "tools": [
+      "tool_101",
+      "tool_102",
+      "tool_103",
+      "tool_104",
+      "tool_105",
+      "tool_106",
+      "tool_107",
+      "tool_108",
+      "tool_109",
+      "tool_110"
+    ]
+  },
+  {
+    "id": "set_002",
+    "name": "Bosch 5-Piece Drill Set",
+    "brand": "Bosch",
+    "category": "Power Tool Set",
+    "image_url": "https://example.com/drill-set.jpg",
+    "tools": [
+      "tool_201",
+      "tool_202",
+      "tool_203",
+      "tool_204",
+      "tool_205"
+    ]
+  },
+  {
+    "id": "set_003",
+    "name": "Makita 12-Piece Screwdriver Set",
+    "brand": "Makita",
+    "category": "Hand Tool Set",
+    "image_url": "https://example.com/screwdriver-set.jpg",
+    "tools": [
+      "tool_301",
+      "tool_302",
+      "tool_303",
+      "tool_304",
+      "tool_305",
+      "tool_306",
+      "tool_307",
+      "tool_308",
+      "tool_309",
+      "tool_310",
+      "tool_311",
+      "tool_312"
+    ]
+  },
+  {
+    "id": "set_004",
+    "name": "DeWalt 7-Piece Socket Set",
+    "brand": "DeWalt",
+    "category": "Hand Tool Set",
+    "image_url": "https://example.com/socket-set.jpg",
+    "tools": [
+      "tool_401",
+      "tool_402",
+      "tool_403",
+      "tool_404",
+      "tool_405",
+      "tool_406",
+      "tool_407"
+    ]
+  },
+  {
+    "id": "set_005",
+    "name": "Klein Tools 6-Piece Pliers Set",
+    "brand": "Klein Tools",
+    "category": "Hand Tool Set",
+    "image_url": "https://example.com/pliers-set.jpg",
+    "tools": [
+      "tool_501",
+      "tool_502",
+      "tool_503",
+      "tool_504",
+      "tool_505",
+      "tool_506"
+    ]
+  },
+  {
+    "id": "set_006",
+    "name": "Ryobi 9-Piece Cordless Tool Set",
+    "brand": "Ryobi",
+    "category": "Power Tool Set",
+    "image_url": "https://example.com/cordless-set.jpg",
+    "tools": [
+      "tool_601",
+      "tool_602",
+      "tool_603",
+      "tool_604",
+      "tool_605",
+      "tool_606",
+      "tool_607",
+      "tool_608",
+      "tool_609"
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "name": "tools-collection-project",
+  "version": "1.0.0",
+  "date": "2025-01-30",
+  "create-date": "2025-02-05",
+  "description": "Create an API that will allow users to interact with a collection of tools.",
+  "keywords": [],
+  "author": "Vern Wolfley",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vwolfley/cse341-web-services"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev":  "open http://localhost:8080 && nodemon app.js",
+    "swagger": "node ./swagger.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "globals": "^15.14.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "swagger-autogen": "^2.23.7"
+  },
+  "prettier": {
+    "plugins": []
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    }
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Cordless Drill",
+    "brand": "DeWalt",
+    "model_number": "DCD777C2",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "20V",
+      "rpm": "1500",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/drill.jpg"
+  },
+  {
+    "name": "10mm Wrench",
+    "brand": "Craftsman",
+    "model_number": "CMHT81547",
+    "category": "Hand Tool",
+    "size": "10mm",
+    "set_id": "set_001",
+    "power_source": "",
+    "specifications": {
+      "voltage": "",
+      "rpm": "",
+      "battery_type": ""
+    },
+    "image_url": "https://example.com/wrenchset.jpg"
+  },
+  {
+    "name": "Impact Driver",
+    "brand": "Makita",
+    "model_number": "XDT131",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "18V",
+      "rpm": "2800",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/impact-driver.jpg"
+  },
+  {
+    "name": "Circular Saw",
+    "brand": "Bosch",
+    "model_number": "CS10",
+    "category": "Power Tool",
+    "size": "7-1/4 inch",
+    "set_id": "None",
+    "power_source": "Corded",
+    "specifications": {
+      "voltage": "120V",
+      "rpm": "5500",
+      "battery_type": "N/A"
+    },
+    "image_url": "https://example.com/circular-saw.jpg"
+  },
+  {
+    "name": "Jigsaw",
+    "brand": "DeWalt",
+    "model_number": "DJT333B",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "20V",
+      "rpm": "3000",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/jigsaw.jpg"
+  },
+  {
+    "name": "Reciprocating Saw",
+    "brand": "Milwaukee",
+    "model_number": "2720-20",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "18V",
+      "rpm": "3000",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/reciprocating-saw.jpg"
+  },
+  {
+    "name": "Angle Grinder",
+    "brand": "Makita",
+    "model_number": "9557PB",
+    "category": "Power Tool",
+    "size": "4-1/2 inch",
+    "set_id": "None",
+    "power_source": "Corded",
+    "specifications": {
+      "voltage": "120V",
+      "rpm": "11000",
+      "battery_type": "N/A"
+    },
+    "image_url": "https://example.com/angle-grinder.jpg"
+  },
+  {
+    "name": "Hammer Drill",
+    "brand": "Bosch",
+    "model_number": "HD18-2",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "18V",
+      "rpm": "1900",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/hammer-drill.jpg"
+  },
+  {
+    "name": "Oscillating Multi-Tool",
+    "brand": "DeWalt",
+    "model_number": "DCS355D1",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "20V",
+      "rpm": "22000",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/oscillating-tool.jpg"
+  },
+  {
+    "name": "Cordless Grinder",
+    "brand": "Milwaukee",
+    "model_number": "2680-20",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "18V",
+      "rpm": "10000",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/cordless-grinder.jpg"
+  },
+  {
+    "name": "Cordless Nail Gun",
+    "brand": "Paslode",
+    "model_number": "902400",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "7.4V",
+      "rpm": "N/A",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/nail-gun.jpg"
+  },
+  {
+    "name": "Electric Screwdriver",
+    "brand": "Ryobi",
+    "model_number": "P241",
+    "category": "Power Tool",
+    "size": "None",
+    "set_id": "None",
+    "power_source": "Battery",
+    "specifications": {
+      "voltage": "18V",
+      "rpm": "600",
+      "battery_type": "Lithium-ion"
+    },
+    "image_url": "https://example.com/electric-screwdriver.jpg"
+  }
+]
