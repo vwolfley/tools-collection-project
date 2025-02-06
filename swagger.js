@@ -16,10 +16,10 @@ const doc = {
     },
   },
   servers: [
-    // {
-    //   url: "https://cse341-web-services-vw.onrender.com",
-    //   description: "Production server",
-    // },
+    {
+      url: "https://tools-collection-project.onrender.com",
+      description: "Production server",
+    },
     {
       url: "http://localhost:8080",
       description: "Local development server",

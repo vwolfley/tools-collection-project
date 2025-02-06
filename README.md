@@ -1,14 +1,15 @@
 # tool-collection-project
 
-[![GitHub license](https://img.shields.io/github/license/vwolfley/cse341-web-services?style=flat-square)](https://github.com/vwolfley/cse341-web-services/blob/main/LICENSE)
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](https://tools-collection-project.onrender.com/)
+[![GitHub license](https://img.shields.io/github/license/vwolfley/tools-collection-project?style=flat-square)](https://github.com/vwolfley/tools-collection-project/blob/main/LICENSE)
 
 
 ## Development Instructions
 
 ### Quickstart Instructions
 
-1. [Clone this repo](https://github.com/vwolfley/cse341-web-services) - `https://github.com/vwolfley/cse341-web-services`
-2. `cd` into the `cse341-web-services` folder.
+1. [Clone this repo](https://github.com/vwolfley/tools-collection-project) - `https://github.com/vwolfley/tools-collection-project`
+2. `cd` into the `tools-collection-project` folder.
 3. Install the dependencies with `npm install`.
 
 ### Available Scripts
@@ -19,7 +20,7 @@ In the project directory, you can run:
 
 - Compiles raw source code into both `debug` and `production` versions.
 - Runs the application in development mode.
-- Opens [http://localhost:3000](http://localhost:3000) in your browser for live preview.
+- Opens [http://localhost:8080](http://localhost:8080) in your browser for live preview.
 - The page automatically reloads whenever you make edits.
 - Displays linting errors and warnings directly in the console for easier debugging.
 
@@ -29,7 +30,10 @@ In the project directory, you can run:
 - Runs the application in production mode.
 - Used to deploy on Render.com
 
-#### `npm run test`
+#### `npm run swagger`
+
+- Automatically generates the swagger.json
+- Useful for testing API endpoints and ensuring up-to-date documentation.
 
 ---
 
@@ -37,7 +41,7 @@ In the project directory, you can run:
 
 - Push to GitHub repository
 - Deploy to Render.com
-- [https://cse341-web-services-vw.onrender.com/](https://cse341-web-services-vw.onrender.com/)
+- [https://tools-collection-project.onrender.com/](https://tools-collection-project.onrender.com/)
 
 ---
 
