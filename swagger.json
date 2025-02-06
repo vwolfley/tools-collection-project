@@ -1,0 +1,710 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tools Collection Project API",
+    "description": "Create an API that will allow users to interact with a collection of tools.",
+    "contact": {
+      "name": "API Support - Vern Wolfley",
+      "email": "wol21023@byui.edu"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "summary": "Get all users",
+        "description": "Returns all users",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a user",
+        "description": "Add a user to the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "phoneNumber": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Get user by id",
+        "description": "Returns a user with specified id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a existing user by id",
+        "description": "Update a existing user in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "phoneNumber": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user by id",
+        "description": "Delete a user in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/userTools/": {
+      "get": {
+        "summary": "Get all userTools",
+        "description": "Returns all userTools",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a userTool",
+        "description": "Add a userTool to the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tool_id": {
+                    "example": "any"
+                  },
+                  "set_id": {
+                    "example": "any"
+                  },
+                  "serial_number": {
+                    "example": "any"
+                  },
+                  "condition": {
+                    "example": "any"
+                  },
+                  "purchase_date": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "location": {
+                    "example": "any"
+                  },
+                  "notes": {
+                    "example": "any"
+                  },
+                  "loanedTo": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userTools/{id}": {
+      "get": {
+        "summary": "Get userTool by id",
+        "description": "Returns a userTool with specified id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a existing userTool by id",
+        "description": "Update a existing userTool in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tool_id": {
+                    "example": "any"
+                  },
+                  "set_id": {
+                    "example": "any"
+                  },
+                  "serial_number": {
+                    "example": "any"
+                  },
+                  "condition": {
+                    "example": "any"
+                  },
+                  "purchase_date": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "location": {
+                    "example": "any"
+                  },
+                  "notes": {
+                    "example": "any"
+                  },
+                  "loanedTo": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a userTool by id",
+        "description": "Delete a userTool in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tools/": {
+      "get": {
+        "summary": "Get all tools",
+        "description": "Returns all tools",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a tol",
+        "description": "Add a tool to the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "model_number": {
+                    "example": "any"
+                  },
+                  "category": {
+                    "example": "any"
+                  },
+                  "size": {
+                    "example": "any"
+                  },
+                  "set_id": {
+                    "example": "any"
+                  },
+                  "power_source": {
+                    "example": "any"
+                  },
+                  "specifications": {
+                    "example": "any"
+                  },
+                  "image_url": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{id}": {
+      "get": {
+        "summary": "Get tool by id",
+        "description": "Returns a tool with specified id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a existing tool by id",
+        "description": "Update a existing tool in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "model_number": {
+                    "example": "any"
+                  },
+                  "category": {
+                    "example": "any"
+                  },
+                  "size": {
+                    "example": "any"
+                  },
+                  "set_id": {
+                    "example": "any"
+                  },
+                  "power_source": {
+                    "example": "any"
+                  },
+                  "specifications": {
+                    "example": "any"
+                  },
+                  "image_url": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a tool by id",
+        "description": "Delete a tool in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/toolSets/": {
+      "get": {
+        "summary": "Get all toolSets",
+        "description": "Returns all toolSets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a toolSet",
+        "description": "Add a toolSet to the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "category": {
+                    "example": "any"
+                  },
+                  "image_url": {
+                    "example": "any"
+                  },
+                  "tools": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/toolSets/{id}": {
+      "get": {
+        "summary": "Get tool by id",
+        "description": "Returns a tool with specified id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a existing toolSets by id",
+        "description": "Update a existing toolSets in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "category": {
+                    "example": "any"
+                  },
+                  "image_url": {
+                    "example": "any"
+                  },
+                  "tools": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a toolSet by id",
+        "description": "Delete a toolSet in the database by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

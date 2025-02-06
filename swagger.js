@@ -3,9 +3,9 @@ const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 
 const doc = {
   info: {
-    version: "1.4.0",
-    title: "My CSE 341 Contacts API",
-    description: "Contacts API for BYU-Idaho CSE 341 Winter 2025",
+    version: "1.0.0",
+    title: "Tools Collection Project API",
+    description: "Create an API that will allow users to interact with a collection of tools.",
     contact: {
       name: "API Support - Vern Wolfley",
       email: "wol21023@byui.edu",
@@ -16,10 +16,10 @@ const doc = {
     },
   },
   servers: [
-    {
-      url: "https://cse341-web-services-vw.onrender.com",
-      description: "Production server",
-    },
+    // {
+    //   url: "https://cse341-web-services-vw.onrender.com",
+    //   description: "Production server",
+    // },
     {
       url: "http://localhost:8080",
       description: "Local development server",
