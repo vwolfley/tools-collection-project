@@ -19,9 +19,30 @@
       "description": "Local development server"
     }
   ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "UserTools",
+      "description": "Operations about userTools"
+    },
+    {
+      "name": "Tools",
+      "description": "Operations about tools"
+    },
+    {
+      "name": "ToolSets",
+      "description": "Operations about toolSets"
+    }
+  ],
   "paths": {
     "/users/": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Get all users",
         "description": "Returns all users",
         "responses": {
@@ -34,6 +55,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Add a user",
         "description": "Add a user to the database",
         "produces": [
@@ -80,6 +104,9 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Get user by id",
         "description": "Returns a user with specified id",
         "parameters": [
@@ -105,6 +132,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Update a existing user by id",
         "description": "Update a existing user in the database by id",
         "parameters": [
@@ -159,6 +189,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Delete a user by id",
         "description": "Delete a user in the database by id",
         "parameters": [
@@ -186,6 +219,9 @@
     },
     "/userTools/": {
       "get": {
+        "tags": [
+          "UserTools"
+        ],
         "summary": "Get all userTools",
         "description": "Returns all userTools",
         "responses": {
@@ -198,6 +234,9 @@
         }
       },
       "post": {
+        "tags": [
+          "UserTools"
+        ],
         "summary": "Add a userTool",
         "description": "Add a userTool to the database",
         "produces": [
@@ -253,6 +292,9 @@
     },
     "/userTools/{id}": {
       "get": {
+        "tags": [
+          "UserTools"
+        ],
         "summary": "Get userTool by id",
         "description": "Returns a userTool with specified id",
         "parameters": [
@@ -278,6 +320,9 @@
         }
       },
       "put": {
+        "tags": [
+          "UserTools"
+        ],
         "summary": "Update a existing userTool by id",
         "description": "Update a existing userTool in the database by id",
         "parameters": [
@@ -341,6 +386,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "UserTools"
+        ],
         "summary": "Delete a userTool by id",
         "description": "Delete a userTool in the database by id",
         "parameters": [
@@ -368,6 +416,9 @@
     },
     "/tools/": {
       "get": {
+        "tags": [
+          "Tools"
+        ],
         "summary": "Get all tools",
         "description": "Returns all tools",
         "responses": {
@@ -380,6 +431,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Tools"
+        ],
         "summary": "Add a tol",
         "description": "Add a tool to the database",
         "produces": [
@@ -435,6 +489,9 @@
     },
     "/tools/{id}": {
       "get": {
+        "tags": [
+          "Tools"
+        ],
         "summary": "Get tool by id",
         "description": "Returns a tool with specified id",
         "parameters": [
@@ -460,6 +517,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Tools"
+        ],
         "summary": "Update a existing tool by id",
         "description": "Update a existing tool in the database by id",
         "parameters": [
@@ -523,6 +583,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Tools"
+        ],
         "summary": "Delete a tool by id",
         "description": "Delete a tool in the database by id",
         "parameters": [
@@ -550,6 +613,9 @@
     },
     "/toolSets/": {
       "get": {
+        "tags": [
+          "ToolSets"
+        ],
         "summary": "Get all toolSets",
         "description": "Returns all toolSets",
         "responses": {
@@ -562,6 +628,9 @@
         }
       },
       "post": {
+        "tags": [
+          "ToolSets"
+        ],
         "summary": "Add a toolSet",
         "description": "Add a toolSet to the database",
         "produces": [
@@ -605,6 +674,9 @@
     },
     "/toolSets/{id}": {
       "get": {
+        "tags": [
+          "ToolSets"
+        ],
         "summary": "Get tool by id",
         "description": "Returns a tool with specified id",
         "parameters": [
@@ -630,6 +702,9 @@
         }
       },
       "put": {
+        "tags": [
+          "ToolSets"
+        ],
         "summary": "Update a existing toolSets by id",
         "description": "Update a existing toolSets in the database by id",
         "parameters": [
@@ -681,6 +756,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "ToolSets"
+        ],
         "summary": "Delete a toolSet by id",
         "description": "Delete a toolSet in the database by id",
         "parameters": [

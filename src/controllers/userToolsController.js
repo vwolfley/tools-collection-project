@@ -15,6 +15,7 @@ userToolsController.getAll = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all userTools'
     #swagger.description = 'Returns all userTools'
+    #swagger.tags = ['UserTools']
   */
   try {
     const result = await mongodb.getDb().db().collection("userTools").find();
@@ -35,6 +36,7 @@ userToolsController.getUserTools = async (req, res, next) => {
   /*
     #swagger.summary = 'Get userTool by id'
     #swagger.description = 'Returns a userTool with specified id'
+    #swagger.tags = ['UserTools']
   */
   try {
     const userToolId = ObjectId.createFromHexString(req.params.id);
@@ -58,6 +60,7 @@ userToolsController.createUserTool = async (req, res, next) => {
   /*
     #swagger.summary = 'Add a userTool'
     #swagger.description = 'Add a userTool to the database'
+    #swagger.tags = ['UserTools']
   */
   try {
     const userTool = {
@@ -94,6 +97,7 @@ userToolsController.updateUserTools = async (req, res, next) => {
   /*
     #swagger.summary = 'Update a existing userTool by id'
     #swagger.description = 'Update a existing userTool in the database by id'
+    #swagger.tags = ['UserTools']
   */
   try {
     const userToolId = ObjectId.createFromHexString(req.params.id);
@@ -133,6 +137,7 @@ userToolsController.deleteUserTool = async (req, res, next) => {
   /*
     #swagger.summary = "Delete a userTool by id"
     #swagger.description = "Delete a userTool in the database by id"
+    #swagger.tags = ['UserTools']
   */
   try {
     const userToolId = ObjectId.createFromHexString(req.params.id);

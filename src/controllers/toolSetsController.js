@@ -15,6 +15,7 @@ toolSetsController.getAll = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all toolSets'
     #swagger.description = 'Returns all toolSets'
+    #swagger.tags = ['ToolSets']
   */
   try {
     const result = await mongodb.getDb().db().collection("toolSets").find();
@@ -35,6 +36,7 @@ toolSetsController.getToolSet = async (req, res, next) => {
   /*
     #swagger.summary = 'Get tool by id'
     #swagger.description = 'Returns a tool with specified id'
+    #swagger.tags = ['ToolSets']
   */
   try {
     const toolSetId = ObjectId.createFromHexString(req.params.id);
@@ -58,6 +60,7 @@ toolSetsController.createToolSet = async (req, res, next) => {
   /*
     #swagger.summary = 'Add a toolSet'
     #swagger.description = 'Add a toolSet to the database'
+    #swagger.tags = ['ToolSets']
   */
   try {
     const toolSet = {
@@ -92,6 +95,7 @@ toolSetsController.updateToolSet = async (req, res, next) => {
   /*
     #swagger.summary = 'Update a existing toolSets by id'
     #swagger.description = 'Update a existing toolSets in the database by id'
+    #swagger.tags = ['ToolSets']
   */
   try {
     const toolSetId = ObjectId.createFromHexString(req.params.id);
@@ -131,6 +135,7 @@ toolSetsController.deleteToolSet = async (req, res, next) => {
   /*
     #swagger.summary = "Delete a toolSet by id"
     #swagger.description = "Delete a toolSet in the database by id"
+    #swagger.tags = ['ToolSets']
   */
   try {
     const toolSetId = ObjectId.createFromHexString(req.params.id);

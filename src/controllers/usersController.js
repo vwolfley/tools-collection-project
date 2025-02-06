@@ -15,6 +15,7 @@ usersController.getAll = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all users'
     #swagger.description = 'Returns all users'
+    #swagger.tags = ['Users']
   */
   try {
     const result = await mongodb.getDb().db().collection("users").find();
@@ -35,6 +36,7 @@ usersController.getUser = async (req, res, next) => {
   /*
     #swagger.summary = 'Get user by id'
     #swagger.description = 'Returns a user with specified id'
+    #swagger.tags = ['Users']
   */
   try {
     const userId = ObjectId.createFromHexString(req.params.id);
@@ -58,6 +60,7 @@ usersController.createUser = async (req, res, next) => {
   /*
     #swagger.summary = 'Add a user'
     #swagger.description = 'Add a user to the database'
+    #swagger.tags = ['Users']
   */
   try {
     const user = {
@@ -91,6 +94,7 @@ usersController.updateUser = async (req, res, next) => {
   /*
     #swagger.summary = 'Update a existing user by id'
     #swagger.description = 'Update a existing user in the database by id'
+    #swagger.tags = ['Users']
   */
   try {
     const userId = ObjectId.createFromHexString(req.params.id);
@@ -127,6 +131,7 @@ usersController.deleteUser = async (req, res, next) => {
   /*
     #swagger.summary = "Delete a user by id"
     #swagger.description = "Delete a user in the database by id"
+    #swagger.tags = ['Users']
   */
   try {
     const userId = ObjectId.createFromHexString(req.params.id);

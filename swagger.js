@@ -25,6 +25,24 @@ const doc = {
       description: "Local development server",
     }
   ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "UserTools",
+      "description": "Operations about userTools"
+    },
+    {
+      "name": "Tools",
+      "description": "Operations about tools"
+    },
+    {
+      "name": "ToolSets",
+      "description": "Operations about toolSets"
+    }
+  ],
 };
 
 // Output file
