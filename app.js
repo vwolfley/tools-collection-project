@@ -3,6 +3,7 @@
  application. It is used to control the project.
  *******************************************/
 // 3rd party modules
+const favicon = require("serve-favicon");
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
@@ -19,12 +20,16 @@ const app = express();
 
 // Middlewares
 app.use(bodyParser.json());
+// Returns a middleware to serve favicon
+app.use(favicon(__dirname + "/src/public/favicon.ico"));
 // Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res, next) => {
   const allowedOrigin =
-    process.env.NODE_ENV === "production" ? "https://cse341-web-services-vw.onrender.com" : "http://localhost:8080";
+    process.env.NODE_ENV === "production"
+      ? "https://cse341-web-services-vw.onrender.com"
+      : "http://localhost:8080";
   res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
