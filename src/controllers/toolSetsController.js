@@ -34,8 +34,8 @@ toolSetsController.getAll = async (req, res, next) => {
  ****************************/
 toolSetsController.getToolSet = async (req, res, next) => {
   /*
-    #swagger.summary = 'Get tool by id'
-    #swagger.description = 'Returns a tool with specified id'
+    #swagger.summary = 'Get toolSet by id'
+    #swagger.description = 'Returns a toolSet with specified id'
     #swagger.tags = ['ToolSets']
   */
   try {
@@ -93,8 +93,8 @@ toolSetsController.createToolSet = async (req, res, next) => {
  **********************************************/
 toolSetsController.updateToolSet = async (req, res, next) => {
   /*
-    #swagger.summary = 'Update a existing toolSets by id'
-    #swagger.description = 'Update a existing toolSets in the database by id'
+    #swagger.summary = 'Update a existing toolSet by id'
+    #swagger.description = 'Update a existing toolSet in the database by id'
     #swagger.tags = ['ToolSets']
   */
   try {

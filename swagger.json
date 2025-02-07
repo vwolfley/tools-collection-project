@@ -438,7 +438,7 @@
         "tags": [
           "Tools"
         ],
-        "summary": "Add a tol",
+        "summary": "Add a tool",
         "description": "Add a tool to the database",
         "produces": [
           "application/json"
@@ -681,8 +681,8 @@
         "tags": [
           "ToolSets"
         ],
-        "summary": "Get tool by id",
-        "description": "Returns a tool with specified id",
+        "summary": "Get toolSet by id",
+        "description": "Returns a toolSet with specified id",
         "parameters": [
           {
             "name": "id",
@@ -709,8 +709,8 @@
         "tags": [
           "ToolSets"
         ],
-        "summary": "Update a existing toolSets by id",
-        "description": "Update a existing toolSets in the database by id",
+        "summary": "Update a existing toolSet by id",
+        "description": "Update a existing toolSet in the database by id",
         "parameters": [
           {
             "name": "id",

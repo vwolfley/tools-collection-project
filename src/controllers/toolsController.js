@@ -58,7 +58,7 @@ toolsController.getTool = async (req, res, next) => {
  *******************************************/
 toolsController.createTool = async (req, res, next) => {
   /*
-    #swagger.summary = 'Add a tol'
+    #swagger.summary = 'Add a tool'
     #swagger.description = 'Add a tool to the database'
     #swagger.tags = ['Tools']
   */
