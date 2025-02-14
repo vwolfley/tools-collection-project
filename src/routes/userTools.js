@@ -1,22 +1,29 @@
-/********************
- * @desc: This file is the entry point
- * for all routes in the application.
- *******************/
-
 // Import the express module
 const express = require("express");
 const router = express.Router();
 const userToolsController = require("../controllers/userToolsController");
+const utilities = require("../utilities/");
+const validate = require("../utilities/account-validation");
 
 // Get all userTools
-router.get("/", userToolsController.getAll);
+router.get("/", utilities.handleErrors(userToolsController.getAll));
 // Get userTools by id
-router.get("/:id", userToolsController.getUserTools);
+router.get("/:id", utilities.handleErrors(userToolsController.getUserTools));
 // Insert one userTools into the database
-router.post("/", userToolsController.createUserTool);
+router.post(
+  "/",
+  validate.userToolsRules(),
+  validate.checkUsersToolsData,
+  utilities.handleErrors(userToolsController.createUserTool),
+);
 // Update userTools by id
-router.put("/:id", userToolsController.updateUserTools);
+router.put(
+  "/:id",
+  validate.userToolsRules(),
+  validate.checkUsersToolsData,
+  utilities.handleErrors(userToolsController.updateUserTools),
+);
 // Delete userTools by id
-router.delete("/:id", userToolsController.deleteUserTool);
+router.delete("/:id", utilities.handleErrors(userToolsController.deleteUserTool));
 
 module.exports = router;

@@ -1,3 +1,8 @@
+/********************
+ * @desc: This file is the entry point
+ * for all routes in the application.
+ *******************/
+
 const express = require("express");
 const router = express.Router();
 

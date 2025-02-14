@@ -20,11 +20,20 @@ const app = express();
 
 // Middlewares
 app.use(bodyParser.json());
+// Error handling for invalid JSON body
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError) {
+    return res.status(400).json({ message: "Invalid JSON" });
+  }
+  next();
+});
+
 // Returns a middleware to serve favicon
 app.use(favicon(__dirname + "/src/public/favicon.ico"));
 // Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// CORS Middleware
 app.use((req, res, next) => {
   const allowedOrigin =
     process.env.NODE_ENV === "production"
@@ -41,6 +50,23 @@ app.use((req, res, next) => {
 app.use("/", require("./src/routes"));
 
 /* ***********************
+ * 404 Middleware for undefined routes
+ *************************/
+app.use((req, res, next) => {
+  res.status(404).json({ error: "Route not found" });
+});
+
+/* ***********************
+ * Global Error Handling Middleware
+ *************************/
+app.use((err, req, res, next) => {
+  console.error("Error: ", err.stack);
+  res.status(err.status || 500).json({
+    error: err.message || "Internal Server Error",
+  });
+});
+
+/* ***********************
  * Local Server Information
  * Values from .env (environment) file
  *************************/
@@ -52,10 +78,11 @@ const host = process.env.HOST || "localhost";
  *************************/
 mongodb.initDb((err, mongodb) => {
   if (err) {
-    console.log(err);
+    console.error("❌ Database Connection Error:", err);
+    process.exit(1); // Exit process if DB connection fails
   } else {
     app.listen(port, () => {
-      console.log(`app connected to DB and listening on ${host}:${port}`);
+      console.log(`✅ App connected to DB and listening on ${host}:${port}`);
     });
   }
 });

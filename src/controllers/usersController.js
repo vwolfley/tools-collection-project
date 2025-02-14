@@ -75,9 +75,7 @@ usersController.createUser = async (req, res, next) => {
     const response = await mongodb.getDb().db().collection("users").insertOne(user);
     if (response.acknowledged) {
       res.setHeader("Content-Type", "application/json");
-      res
-        .status(201)
-        .json({ message: "User created successfully.", userId: response.insertedId });
+      res.status(201).json({ message: "User created successfully.", userId: response.insertedId });
     } else {
       res.status(500).json({ message: "Failed to create user. No changes made." });
     }
