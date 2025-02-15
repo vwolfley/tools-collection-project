@@ -151,7 +151,7 @@ toolsController.deleteTool = async (req, res, next) => {
     const toolId = ObjectId.createFromHexString(req.params.id);
     const response = await mongodb.getDb().db().collection("tools").deleteOne({ _id: toolId });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(200).send();
     } else {
       res.status(404).json({ message: "Tool not found." });
     }

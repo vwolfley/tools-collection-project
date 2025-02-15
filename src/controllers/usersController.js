@@ -148,7 +148,7 @@ usersController.deleteUser = async (req, res, next) => {
     const username = req.params.username.trim();
     const response = await mongodb.getDb().db().collection("users").deleteOne({ username });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(200).send();
     } else {
       res.status(404).json({ message: "User not found." });
     }

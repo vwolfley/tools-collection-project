@@ -147,7 +147,7 @@ userToolsController.deleteUserTool = async (req, res, next) => {
       .collection("userTools")
       .deleteOne({ _id: userToolId });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(200).send();
     } else {
       res.status(404).json({ message: "userTool not found." });
     }

@@ -145,7 +145,7 @@ toolSetsController.deleteToolSet = async (req, res, next) => {
       .collection("toolSets")
       .deleteOne({ _id: toolSetId });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(200).send();
     } else {
       res.status(404).json({ message: "ToolSet not found." });
     }
