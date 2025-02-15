@@ -30,17 +30,20 @@ usersController.getAll = async (req, res, next) => {
 };
 
 /* **************************
- * Get user by id
+ * Get user by User Name
  ****************************/
 usersController.getUser = async (req, res, next) => {
   /*
-    #swagger.summary = 'Get user by id'
-    #swagger.description = 'Returns a user with specified id'
+    #swagger.summary = 'Get user by username'
+    #swagger.description = 'Returns a user with specified username'
     #swagger.tags = ['Users']
   */
   try {
-    const userId = ObjectId.createFromHexString(req.params.id);
-    const result = await mongodb.getDb().db().collection("users").findOne({ _id: userId });
+    const username = req.params.username?.trim();
+    if (!username) {
+      return res.status(400).send({ message: "Invalid Username Supplied" });
+    }
+    const result = await mongodb.getDb().db().collection("users").findOne({ username });
 
     if (!result) {
       return res.status(404).json({ message: "Users not found." });
@@ -48,8 +51,8 @@ usersController.getUser = async (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(result);
   } catch (error) {
-    console.error("Error getting user:", error);
-    res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
+    console.error(`Error fetching user "${req.params.username}":`, error);
+    return res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
   }
 };
 
@@ -63,6 +66,7 @@ usersController.createUser = async (req, res, next) => {
     #swagger.tags = ['Users']
   */
   try {
+    const username = req.params.username.trim();
     const user = {
       username: req.body.username,
       password: req.body.password,
@@ -71,6 +75,10 @@ usersController.createUser = async (req, res, next) => {
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
     };
+    const existingUser = await mongodb.getDb().db().collection("users").findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username is already taken." });
+    }
 
     const response = await mongodb.getDb().db().collection("users").insertOne(user);
     if (response.acknowledged) {
@@ -86,16 +94,16 @@ usersController.createUser = async (req, res, next) => {
 };
 
 /* ********************************************
- * PUT - Update user in the database by id
+ * PUT - Update user in the database by username
  **********************************************/
 usersController.updateUser = async (req, res, next) => {
   /*
-    #swagger.summary = 'Update a existing user by id'
-    #swagger.description = 'Update a existing user in the database by id'
+    #swagger.summary = 'Update a existing user by username'
+    #swagger.description = 'Update a existing user in the database by username'
     #swagger.tags = ['Users']
   */
   try {
-    const userId = ObjectId.createFromHexString(req.params.id);
+    const username = req.params.username.trim();
     const user = {
       username: req.body.username,
       password: req.body.password,
@@ -105,11 +113,16 @@ usersController.updateUser = async (req, res, next) => {
       phoneNumber: req.body.phoneNumber,
     };
 
+    const existingUser = await mongodb.getDb().db().collection("users").findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username is already taken." });
+    }
+
     const response = await mongodb
       .getDb()
       .db()
       .collection("users")
-      .replaceOne({ _id: userId }, user);
+      .replaceOne({ username }, user);
 
     if (response.modifiedCount > 0) {
       res.status(204).send();
@@ -123,17 +136,17 @@ usersController.updateUser = async (req, res, next) => {
 };
 
 /* *************************************************
- * DELETE - delete user from the database by id
+ * DELETE - delete user from the database by username
  ***************************************************/
 usersController.deleteUser = async (req, res, next) => {
   /*
-    #swagger.summary = "Delete a user by id"
-    #swagger.description = "Delete a user in the database by id"
+    #swagger.summary = "Delete a user by username"
+    #swagger.description = "Delete a user in the database by username"
     #swagger.tags = ['Users']
   */
   try {
-    const userId = ObjectId.createFromHexString(req.params.id);
-    const response = await mongodb.getDb().db().collection("users").deleteOne({ _id: userId });
+    const username = req.params.username.trim();
+    const response = await mongodb.getDb().db().collection("users").deleteOne({ username });
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {

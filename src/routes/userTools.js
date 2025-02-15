@@ -6,24 +6,24 @@ const utilities = require("../utilities/");
 const validate = require("../utilities/userTools-validation");
 
 // Get all userTools
-router.get("/", utilities.handleErrors(userToolsController.getAll));
+router.get("/", userToolsController.getAll);
 // Get userTools by id
-router.get("/:id", utilities.handleErrors(userToolsController.getUserTools));
+router.get("/:id", userToolsController.getUserTools);
 // Insert one userTools into the database
 router.post(
   "/",
   validate.userToolsRules(),
   validate.checkUserToolsData,
-  utilities.handleErrors(userToolsController.createUserTool),
+  userToolsController.createUserTool,
 );
 // Update userTools by id
 router.put(
   "/:id",
   validate.userToolsRules(),
   validate.checkUserToolsData,
-  utilities.handleErrors(userToolsController.updateUserTools),
-);
-// Delete userTools by id
-router.delete("/:id", utilities.handleErrors(userToolsController.deleteUserTool));
+  userToolsController.updateUserTools,
+),
+  // Delete userTools by id
+  router.delete("/:id", userToolsController.deleteUserTool);
 
 module.exports = router;

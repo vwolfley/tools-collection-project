@@ -6,24 +6,16 @@ const utilities = require("../utilities/");
 const validate = require("../utilities/users-validation");
 
 // Get all users
-router.get("/", utilities.handleErrors(usersController.getAll));
-// Get users by id
-router.get("/:id", utilities.handleErrors(usersController.getUser));
+router.get("/", usersController.getAll);
+// Get users by username
+router.get("/:username", usersController.getUser);
 // Insert one users into the database
-router.post(
-  "/",
-  validate.usersRules(),
-  validate.checkUsersData,
-  utilities.handleErrors(usersController.createUser),
-);
-// Update users by id
-router.put(
-  "/:id",
-  validate.usersRules(),
-  validate.checkUsersData,
-  utilities.handleErrors(usersController.updateUser),
-);
-// Delete users by id
-router.delete("/:id", utilities.handleErrors(usersController.deleteUser));
+router.post("/", validate.usersRules(), validate.checkUsersData, usersController.createUser);
+
+// Update users by username
+router.put("/:username", validate.usersRules(), validate.checkUsersData, usersController.updateUser);
+
+// Delete users by username
+router.delete("/:username", usersController.deleteUser);
 
 module.exports = router;

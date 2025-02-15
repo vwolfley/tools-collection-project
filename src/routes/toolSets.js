@@ -6,24 +6,24 @@ const utilities = require("../utilities/");
 const validate = require("../utilities/toolSets-validation");
 
 // Get all toolSets
-router.get("/", utilities.handleErrors(toolSetsController.getAll));
+router.get("/", toolSetsController.getAll);
 // Get toolSets by id
-router.get("/:id", utilities.handleErrors(toolSetsController.getToolSet));
+router.get("/:id", toolSetsController.getToolSet);
 // Insert one toolSets into the database
 router.post(
   "/",
   validate.toolSetsRules(),
   validate.checkToolSetsData,
-  utilities.handleErrors(toolSetsController.createToolSet),
+  toolSetsController.createToolSet,
 );
 // Update toolSets by id
 router.put(
   "/:id",
   validate.toolSetsRules(),
   validate.checkToolSetsData,
-  utilities.handleErrors(toolSetsController.updateToolSet),
+  toolSetsController.updateToolSet,
 );
 // Delete toolSets by id
-router.delete("/:id", utilities.handleErrors(toolSetsController.deleteToolSet));
+router.delete("/:id", toolSetsController.deleteToolSet);
 
 module.exports = router;

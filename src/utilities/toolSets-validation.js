@@ -31,10 +31,10 @@ validate.toolSetsRules = () => {
 
     // image_url is NOT required and must be string
     body("image_url")
-    .optional({ checkFalsy: true }) // Allows empty string or undefined
+    .optional({ checkFalsy: true })
+    .trim()
     .isURL({ protocols: ["http", "https"], require_protocol: true })
     .withMessage("Image URL must be a valid URL starting with http or https.")
-    .trim()
     .escape(),
   ];
 };
