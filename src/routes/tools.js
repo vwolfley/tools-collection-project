@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const toolsController = require("../controllers/toolsController");
 const utilities = require("../utilities/");
-const validate = require("../utilities/account-validation");
+const validate = require("../utilities/tools-validation");
 
 // Get all tools
 router.get("/", utilities.handleErrors(toolsController.getAll));

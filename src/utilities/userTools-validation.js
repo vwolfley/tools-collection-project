@@ -5,7 +5,7 @@ const validate = {};
 /*  **********************************
  *  UserTools Data Validation Rules
  * ********************************* */
-validate.usersToolsRules = () => {
+validate.userToolsRules = () => {
   return [
     // serial number is required and must be string
     body("serial_number").optional({ checkFalsy: true }).trim().escape(),
@@ -43,7 +43,7 @@ validate.usersToolsRules = () => {
 /* ******************************
  *  Check data and return errors or continue to update
  * ***************************** */
-validate.checkUsersToolsData = async (req, res, next) => {
+validate.checkUserToolsData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {

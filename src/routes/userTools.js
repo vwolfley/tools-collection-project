@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const userToolsController = require("../controllers/userToolsController");
 const utilities = require("../utilities/");
-const validate = require("../utilities/account-validation");
+const validate = require("../utilities/userTools-validation");
 
 // Get all userTools
 router.get("/", utilities.handleErrors(userToolsController.getAll));
@@ -13,14 +13,14 @@ router.get("/:id", utilities.handleErrors(userToolsController.getUserTools));
 router.post(
   "/",
   validate.userToolsRules(),
-  validate.checkUsersToolsData,
+  validate.checkUserToolsData,
   utilities.handleErrors(userToolsController.createUserTool),
 );
 // Update userTools by id
 router.put(
   "/:id",
   validate.userToolsRules(),
-  validate.checkUsersToolsData,
+  validate.checkUserToolsData,
   utilities.handleErrors(userToolsController.updateUserTools),
 );
 // Delete userTools by id
