@@ -133,9 +133,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "404": {
             "description": "Not Found"
           },
@@ -148,8 +145,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "Update a existing user by username",
-        "description": "Update a existing user in the database by username",
+        "summary": "Update an existing user by username",
+        "description": "Update an existing user in the database by username",
         "parameters": [
           {
             "name": "username",

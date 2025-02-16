@@ -39,14 +39,12 @@ usersController.getUser = async (req, res, next) => {
     #swagger.tags = ['Users']
   */
   try {
-    const username = req.params.username?.trim();
-    if (!username) {
-      return res.status(400).send({ message: "Invalid Username Supplied" });
-    }
+    const username = req.params.username;
+
     const result = await mongodb.getDb().db().collection("users").findOne({ username });
 
     if (!result) {
-      return res.status(404).json({ message: "Users not found." });
+      return res.status(404).json({ message: "User not found." });
     }
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(result);
@@ -66,16 +64,22 @@ usersController.createUser = async (req, res, next) => {
     #swagger.tags = ['Users']
   */
   try {
-    const username = req.params.username.trim();
+    const userNameBody = req.body.username; // New username from the request body
+
     const user = {
-      username: req.body.username,
+      username: userNameBody,
       password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
     };
-    const existingUser = await mongodb.getDb().db().collection("users").findOne({ username });
+    // Check if the username is already taken on update
+    const existingUser = await mongodb
+      .getDb()
+      .db()
+      .collection("users")
+      .findOne({ username: userNameBody });
     if (existingUser) {
       return res.status(400).json({ message: "Username is already taken." });
     }
@@ -98,12 +102,25 @@ usersController.createUser = async (req, res, next) => {
  **********************************************/
 usersController.updateUser = async (req, res, next) => {
   /*
-    #swagger.summary = 'Update a existing user by username'
-    #swagger.description = 'Update a existing user in the database by username'
+    #swagger.summary = 'Update an existing user by username'
+    #swagger.description = 'Update an existing user in the database by username'
     #swagger.tags = ['Users']
   */
   try {
-    const username = req.params.username.trim();
+    const userNameParam = req.params.username; // this is the username to be updated
+    const userNameBody = req.body.username; // New username from the request body
+
+    // Check if the user exists
+    const paramUserName = await mongodb
+      .getDb()
+      .db()
+      .collection("users")
+      .findOne({ username: userNameParam });
+
+    if (!paramUserName) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
     const user = {
       username: req.body.username,
       password: req.body.password,
@@ -113,19 +130,28 @@ usersController.updateUser = async (req, res, next) => {
       phoneNumber: req.body.phoneNumber,
     };
 
-    const existingUser = await mongodb.getDb().db().collection("users").findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: "Username is already taken." });
+    // If the username is being updated, check if the new username is already taken
+    if (userNameBody !== userNameParam) {
+      const existingUser = await mongodb
+        .getDb()
+        .db()
+        .collection("users")
+        .findOne({ username: userNameBody });
+      if (existingUser) {
+        return res.status(400).json({ message: "Username is already taken." });
+      }
     }
 
+    // Proceed with updating the user in the database
     const response = await mongodb
       .getDb()
       .db()
       .collection("users")
-      .replaceOne({ username }, user);
+      .updateOne({ username: userNameParam }, { $set: user });
 
+    // If modified count is greater than 0, respond with success
     if (response.modifiedCount > 0) {
-      res.status(204).send();
+      res.status(204).send(); // No content, but the update was successful
     } else {
       res.status(404).json({ message: "Failed to update user. No changes made." });
     }
@@ -145,7 +171,7 @@ usersController.deleteUser = async (req, res, next) => {
     #swagger.tags = ['Users']
   */
   try {
-    const username = req.params.username.trim();
+    const username = req.params.username;
     const response = await mongodb.getDb().db().collection("users").deleteOne({ username });
     if (response.deletedCount > 0) {
       res.status(200).send();
