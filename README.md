@@ -3,6 +3,13 @@
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](https://tools-collection-project.onrender.com/)
 [![GitHub license](https://img.shields.io/github/license/vwolfley/tools-collection-project?style=flat-square)](https://github.com/vwolfley/tools-collection-project/blob/main/LICENSE)
 
+The purpose of this application is to help users track the tools they own, making it easier to manage lost, stolen, or borrowed tools. The system will allow users to create an account, add their tools to a personal inventory, and categorize them into tool sets. If a tool or tool set is not already in the database, users can contribute new entries.
+
+Key features will include tracking tool ownership, status updates (owned, borrowed, lost, or stolen), and a lending system to monitor who has borrowed tools and when they are due back. Users will also be able to upload photos, attach documentation, and generate reports. Additionally, the app will support search and filtering, tool set management, and notifications for missing or overdue tools.
+
+This system aims to provide an organized, efficient way to keep track of tools, reducing losses and improving accountability.
+
+See data file for database schema
 
 ## Development Instructions
 
@@ -44,8 +51,31 @@ In the project directory, you can run:
 - [https://tools-collection-project.onrender.com/](https://tools-collection-project.onrender.com/)
 
 ---
+## Project Ideas
 
-### Project List
+1. User Authentication & Roles
+- Implement secure login with email/password or social authentication.
+- Allow roles (e.g., Admin, Standard User) for managing tool listings.
+2. Tool Status & History
+- Track whether a tool is owned, borrowed, lost, or stolen.
+- Log changes in tool status (e.g., borrowed from/to, last seen location).
+3. Tool Set Management
+- Let users group tools into sets for easier tracking.
+- Allow marking a tool missing from a set (which you were already considering).
+4. QR Code/Barcode Scanning
+- Enable users to scan barcodes or QR codes to quickly add or identify tools.
+5. Search & Filtering
+- Allow searching tools by name, category, or status.
+- Filter by condition, location, or tool set.
+6. Tool Lending System
+- Add a way to lend tools to others and track who borrowed them.
+- Set due dates and reminders for returning borrowed tools.
+7. Photo Uploads & Documentation
+- Users can upload photos of their tools for identification.
+- Attach receipts, warranties, or notes to tools.
+8. Reports & Notifications
+- Generate reports of tools owned, borrowed, or lost.
+- Send reminders for overdue borrowed tools or missing tools in a set.
 
 
 ---

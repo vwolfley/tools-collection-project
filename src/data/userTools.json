@@ -1,5 +1,18 @@
 [
   {
+    "user_id": "Primary Key",
+    "tool_id": "From Tools Table",
+    "set_id": "From ToolSets Table",
+    "serial_number": "String| Unique",
+    "condition": "String | Options: New, Good, Fair, Poor, Used, Like New",
+    "status": "String | Options: Owned, Borrowed, In Repair, Lost, Stolen",
+    "purchase_date": "Date",
+    "price": "Number",
+    "location": "String",
+    "notes": "Text",
+    "loanedTo": "String"
+  },
+  {
     "user_id": "user_001",
     "tool_id": "12345",
     "set_id": "set_001",
