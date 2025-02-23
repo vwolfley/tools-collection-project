@@ -6,7 +6,7 @@ const toolSetSchema = new Schema({
   brand: String,
   category: {
     type: String,
-    enum: ["Hand Tools", "Power Tools", "Mechanic Tools", "Woodworking", "Plumbing", "Other"]
+    enum: ["Hand Tools", "Power Tools", "Mechanic Tools", "Woodworking", "Plumbing", "Other"],
   },
   image_url: String,
   description: String,
@@ -16,4 +16,3 @@ const toolSetSchema = new Schema({
 const ToolSet = mongoose.model("ToolSet", toolSetSchema);
 
 module.exports = ToolSet;
-
