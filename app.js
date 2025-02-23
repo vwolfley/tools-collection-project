@@ -7,7 +7,10 @@ const favicon = require("serve-favicon");
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
-const passportSetup = require("./src/auth/passport-google");
+
+// Local modules
+require("./src/auth/passport-google");
+require("./src/auth/passport-github");
 
 
 // Swagger
