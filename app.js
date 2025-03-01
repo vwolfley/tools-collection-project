@@ -7,11 +7,12 @@ const favicon = require("serve-favicon");
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+const { auth } = require("express-openid-connect");
 
 // Local modules
 require("./src/auth/passport-google");
 require("./src/auth/passport-github");
-
+const config = require("./src/auth/auth0");
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
@@ -35,8 +36,6 @@ app.use((err, req, res, next) => {
 
 // Returns a middleware to serve favicon
 app.use(favicon(__dirname + "/src/public/favicon.ico"));
-// Swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // CORS Middleware
 app.use((req, res, next) => {
@@ -51,8 +50,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// app.get("/", (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+// });
+
 // Import the routes from the routes folder
+// app.use("/", require("./src/routes"));
 app.use("/", require("./src/routes"));
+
+// Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /* ***********************
  * 404 Middleware for undefined routes
