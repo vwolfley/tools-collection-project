@@ -56,7 +56,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -81,6 +88,13 @@
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "OAuth2": [
+              "write"
+            ]
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -174,6 +188,13 @@
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "OAuth2": [
+              "write"
+            ]
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -230,7 +251,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ]
       }
     },
     "/userTools/": {
@@ -247,7 +275,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -368,6 +403,13 @@
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "OAuth2": [
+              "write"
+            ]
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -433,7 +475,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ]
       }
     },
     "/tools/": {
@@ -814,6 +863,46 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/profile/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user profile",
+        "description": "Returns user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "description": "This API uses OAuth 2 with the authorizationCode grant flow.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://dev-27e8hpwlly70ztgu.us.auth0.com/authorize",
+            "tokenUrl": "https://dev-27e8hpwlly70ztgu.us.auth0.com/oauth/token",
+            "scopes": {
+              "read": "Grants read access",
+              "write": "Grants write access",
+              "admin": "Grants access to admin operations"
+            }
           }
         }
       }

@@ -12,7 +12,7 @@ const doc = {
     },
     license: {
       name: "MIT",
-      url: "https://opensource.org/license/mit"
+      url: "https://opensource.org/license/mit",
     },
   },
   servers: [
@@ -23,26 +23,45 @@ const doc = {
     {
       url: "http://localhost:8080",
       description: "Local development server",
-    }
+    },
   ],
-  "tags": [
+  tags: [
     {
-      "name": "Users",
-      "description": "Operations about users"
+      name: "Users",
+      description: "Operations about users",
     },
     {
-      "name": "UserTools",
-      "description": "Operations about userTools"
+      name: "UserTools",
+      description: "Operations about userTools",
     },
     {
-      "name": "Tools",
-      "description": "Operations about tools"
+      name: "Tools",
+      description: "Operations about tools",
     },
     {
-      "name": "ToolSets",
-      "description": "Operations about toolSets"
-    }
+      name: "ToolSets",
+      description: "Operations about toolSets",
+    },
   ],
+  components: {
+    securitySchemes: {
+      OAuth2: {
+        type: "oauth2",
+        description: "This API uses OAuth 2 with the authorizationCode grant flow.",
+        flows: {
+          authorizationCode: {
+            authorizationUrl: "https://dev-27e8hpwlly70ztgu.us.auth0.com/authorize",
+            tokenUrl: "https://dev-27e8hpwlly70ztgu.us.auth0.com/oauth/token",
+            scopes: {
+              read: "Grants read access",
+              write: "Grants write access",
+              admin: "Grants access to admin operations",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 // Output file

@@ -16,6 +16,9 @@ userToolsController.getAll = async (req, res, next) => {
     #swagger.summary = 'Get all userTools'
     #swagger.description = 'Returns all userTools'
     #swagger.tags = ['UserTools']
+    #swagger.security = [{
+        "OAuth2": ["read"]
+    }]
   */
   try {
     const result = await mongodb.getDb().db().collection("userTools").find();
@@ -98,6 +101,9 @@ userToolsController.updateUserTools = async (req, res, next) => {
     #swagger.summary = 'Update a existing userTool by id'
     #swagger.description = 'Update a existing userTool in the database by id'
     #swagger.tags = ['UserTools']
+    #swagger.security = [{
+        "OAuth2": ["write"]
+    }]
   */
   try {
     const userToolId = ObjectId.createFromHexString(req.params.id);
@@ -138,6 +144,9 @@ userToolsController.deleteUserTool = async (req, res, next) => {
     #swagger.summary = "Delete a userTool by id"
     #swagger.description = "Delete a userTool in the database by id"
     #swagger.tags = ['UserTools']
+    #swagger.security = [{
+        "OAuth2": ["admin"]
+    }]
   */
   try {
     const userToolId = ObjectId.createFromHexString(req.params.id);

@@ -16,6 +16,9 @@ usersController.getAll = async (req, res, next) => {
     #swagger.summary = 'Get all users'
     #swagger.description = 'Returns all users'
     #swagger.tags = ['Users']
+    #swagger.security = [{
+        "OAuth2": ["read"]
+    }]
   */
   try {
     const result = await mongodb.getDb().db().collection("users").find();
@@ -62,6 +65,9 @@ usersController.createUser = async (req, res, next) => {
     #swagger.summary = 'Add a user'
     #swagger.description = 'Add a user to the database'
     #swagger.tags = ['Users']
+    #swagger.security = [{
+        "OAuth2": [ "write"]
+    }]
   */
   try {
     const userNameBody = req.body.username; // New username from the request body
@@ -105,6 +111,9 @@ usersController.updateUser = async (req, res, next) => {
     #swagger.summary = 'Update an existing user by username'
     #swagger.description = 'Update an existing user in the database by username'
     #swagger.tags = ['Users']
+    #swagger.security = [{
+        "OAuth2": ["write"]
+    }]
   */
   try {
     const userNameParam = req.params.username; // this is the username to be updated
@@ -169,6 +178,9 @@ usersController.deleteUser = async (req, res, next) => {
     #swagger.summary = "Delete a user by username"
     #swagger.description = "Delete a user in the database by username"
     #swagger.tags = ['Users']
+    #swagger.security = [{
+        "OAuth2": ["admin"]
+    }]
   */
   try {
     const username = req.params.username;
