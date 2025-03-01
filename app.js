@@ -10,8 +10,8 @@ const MongoClient = require("mongodb").MongoClient;
 const { auth } = require("express-openid-connect");
 
 // Local modules
-require("./src/auth/passport-google");
-require("./src/auth/passport-github");
+// require("./src/auth/passport-google");
+// require("./src/auth/passport-github");
 const config = require("./src/auth/auth0");
 
 // Swagger

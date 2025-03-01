@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
+// const passport = require("passport");
 const { auth, requiresAuth } = require('express-openid-connect');
 
 // Gets the user's profile
