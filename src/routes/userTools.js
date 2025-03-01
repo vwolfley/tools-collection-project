@@ -4,9 +4,10 @@ const router = express.Router();
 const userToolsController = require("../controllers/userToolsController");
 const utilities = require("../utilities/");
 const validate = require("../utilities/userTools-validation");
+const { auth, requiresAuth } = require('express-openid-connect');
 
 // Get all userTools
-router.get("/", userToolsController.getAll);
+router.get("/", requiresAuth(), userToolsController.getAll);
 // Get userTools by id
 router.get("/:id", userToolsController.getUserTools);
 // Insert one userTools into the database
@@ -24,6 +25,6 @@ router.put(
   userToolsController.updateUserTools,
 ),
   // Delete userTools by id
-  router.delete("/:id", userToolsController.deleteUserTool);
+  router.delete("/:id", requiresAuth(), userToolsController.deleteUserTool);
 
 module.exports = router;

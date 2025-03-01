@@ -17,6 +17,6 @@ router.post("/", validate.usersRules(), validate.checkUsersData, usersController
 router.put("/:username", validate.usersRules(), validate.checkUsersData, usersController.updateUser);
 
 // Delete users by username
-router.delete("/:username", usersController.deleteUser);
+router.delete("/:username", requiresAuth(), usersController.deleteUser);
 
 module.exports = router;
