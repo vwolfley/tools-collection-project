@@ -3,7 +3,7 @@ const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 
 const doc = {
   info: {
-    version: "1.1.0",
+    version: "1.2.0",
     title: "Tools Collection Project API",
     description: "Create an API that will allow users to interact with a collection of tools.",
     contact: {

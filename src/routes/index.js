@@ -18,9 +18,8 @@ const router = express.Router();
 // `;
 
 const logout = `
-<h2>Thanks for visiting the Tools Project API!</h2>
-<h3>Logged Out</h3>
-<p>You are now logged out.</p>
+<h2>Welcome to the Tools Project API!</h2>
+<h3>You are Logged Out</h3>
 <p>Sign in to the Tools Project API:</p>
 <menu>
   <li><a id="logout" href="/login"><button>Login</button></a></li>
@@ -28,8 +27,7 @@ const logout = `
 `;
 const login = `
 <h2>Welcome to the Tools Project API!</h2>
-<h3>Logged In</h3>
-<p>You are now logged in.</p>
+<h3>You are Logged In</h3>
 <menu>
   <li><a id="logout" href="/logout"><button>Logout</button></a></li>
 </menu>
