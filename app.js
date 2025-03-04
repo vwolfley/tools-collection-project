@@ -13,13 +13,11 @@ const { auth } = require("express-openid-connect");
 // require("./src/auth/passport-google");
 // require("./src/auth/passport-github");
 const config = require("./src/auth/auth0");
-
+const mongodb = require("./src/database/mongo-connect");
+const mongoose = require("./src/database/mongoose-connect");
 // Swagger
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-
-// Local modules
-const mongodb = require("./src/database/mongo-connect");
 
 // Server Initialization
 const app = express();
@@ -91,7 +89,7 @@ const host = process.env.HOST || "localhost";
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-mongodb.initDb((err, mongodb) => {
+mongoose.initDb((err, mongoose) => {
   if (err) {
     console.error("❌ Database Connection Error:", err);
     process.exit(1); // Exit process if DB connection fails
