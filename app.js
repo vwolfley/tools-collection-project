@@ -6,17 +6,16 @@
 const favicon = require("serve-favicon");
 const express = require("express");
 const bodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
+// const MongoClient = require("mongodb").MongoClient;
+const swaggerUi = require("swagger-ui-express");
 const { auth } = require("express-openid-connect");
 
 // Local modules
+// const mongodb = require("./src/database/mongo-connect");
+const mongoose = require("./src/database/mongoose-connect");
 // require("./src/auth/passport-google");
 // require("./src/auth/passport-github");
 const config = require("./src/auth/auth0");
-const mongodb = require("./src/database/mongo-connect");
-const mongoose = require("./src/database/mongoose-connect");
-// Swagger
-const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 // Server Initialization
@@ -50,10 +49,6 @@ app.use((req, res, next) => {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
-
-// app.get("/", (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-// });
 
 // Import the routes from the routes folder
 // app.use("/", require("./src/routes"));
