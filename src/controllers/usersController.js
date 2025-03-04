@@ -2,10 +2,6 @@
  * @desc: This file contains the controller
   functions for the routes in users.js
  ******************************************/
-
-const mongodb = require("../database/mongo-connect");
-const mongoose = require("../database/mongoose-connect");
-const ObjectId = require("mongodb").ObjectId;
 const bcrypt = require("bcryptjs");
 const User = require("../models/user-model");
 
@@ -79,6 +75,12 @@ usersController.createUser = async (req, res, next) => {
       return res.status(400).json({ message: "Username is already taken." });
     }
 
+    // Check if the email is already taken
+    const existingEmail = await User.findOne({ email: email }).exec();
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email address is already taken." });
+    }
+
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -113,7 +115,7 @@ usersController.updateUser = async (req, res, next) => {
   */
   try {
     const { username: userNameParam } = req.params; // Username from URL
-    const { username: userNameBody, ...updateData } = req.body; // Extract new username and other fields
+    const { username: userNameBody, email: emailBody, password, ...updateData } = req.body; // Extract username, password, and other fields
 
     // Check if the user exists
     const existingUser = await User.findOne({ username: userNameParam });
@@ -127,17 +129,32 @@ usersController.updateUser = async (req, res, next) => {
       if (usernameExists) {
         return res.status(400).json({ message: "Username is already taken." });
       }
+      updateData.username = userNameBody; // Set new username if valid
+    }
+
+    // Hash the password before saving (if updating password)
+    if (password) {
+      updateData.password = await bcrypt.hash(password, 10);
+    }
+
+    // If updating email, check if the new email is already taken
+    if (emailBody && emailBody !== existingUser.email) {
+      const emailExists = await User.findOne({ email: emailBody });
+      if (emailExists) {
+        return res.status(400).json({ message: "Email is already in use." });
+      }
+      updateData.email = emailBody; // Set new email if valid
     }
 
     // Update the user
     const updatedUser = await User.findOneAndUpdate(
-      { username: userNameParam },
-      { $set: updateData }, // Use the spread updateData to only update provided fields
-      { new: true, runValidators: true }, // Returns the updated document and applies schema validation
+      { username: userNameParam }, // Find user by current username
+      { $set: updateData }, // Update only provided fields
+      { new: true, runValidators: true }, // Return updated document & enforce schema validation
     );
 
     if (!updatedUser) {
-      return res.status(404).json({ message: "Failed to update user. No changes made." });
+      return res.status(400).json({ message: "Failed to update user. No changes made." });
     }
 
     res.status(200).json(updatedUser); // Return the updated user object
