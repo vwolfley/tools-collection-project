@@ -2,9 +2,8 @@
  * @desc: This file contains the controller
   functions for the routes in tools.js
  ******************************************/
-
-const mongodb = require("../database/mongo-connect");
-const ObjectId = require("mongodb").ObjectId;
+const mongoose = require("mongoose");
+const Tool = require("../models/tool-model");
 
 const toolsController = {};
 
@@ -18,11 +17,9 @@ toolsController.getAll = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const result = await mongodb.getDb().db().collection("tools").find();
-    result.toArray().then((lists) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(lists);
-    });
+    const tools = await Tool.find({});
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(tools);
   } catch (error) {
     console.error("Error getting tools:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
@@ -39,14 +36,21 @@ toolsController.getTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolId = ObjectId.createFromHexString(req.params.id);
-    const result = await mongodb.getDb().db().collection("tools").findOne({ _id: toolId });
+    const { id } = req.params;
 
-    if (!result) {
+    // Validate the ObjectId before querying
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid tool ID format." });
+    }
+
+    const tool = await Tool.findById(id);
+
+    if (!tool) {
       return res.status(404).json({ message: "Tool not found." });
     }
+
     res.setHeader("Content-Type", "application/json");
-    res.status(200).json(result);
+    res.status(200).json(tool);
   } catch (error) {
     console.error("Error getting tool:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
@@ -63,31 +67,26 @@ toolsController.createTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const tool = {
-      name: req.body.name,
+    const toolData = {
+      tool: req.body.tool,
       brand: req.body.brand,
       model_number: req.body.model_number,
       category: req.body.category,
       size: req.body.size,
-      set_id: req.body.set_id,
+      set_id: mongoose.Types.ObjectId(req.body.set_id),
       power_source: req.body.power_source,
-      specifications: {
-        voltage: req.body.specifications?.voltage,
-        rpm: req.body.specifications?.rpm,
-        battery_type: req.body.specifications?.battery_type
-      },
+      specifications: [
+        { name: "Voltage", value: req.body.voltage },
+        { name: "RPM", value: req.body.rpm },
+      ],
+      description: req.body.description,
       image_url: req.body.image_url,
     };
 
-    const response = await mongodb.getDb().db().collection("tools").insertOne(tool);
-    if (response.acknowledged) {
-      res.setHeader("Content-Type", "application/json");
-      res
-        .status(201)
-        .json({ message: "Tool created successfully.", userId: response.insertedId });
-    } else {
-      res.status(500).json({ message: "Failed to create tool. No changes made." });
-    }
+    const newTool = new Tool.create(toolData);
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(201).json({ message: "Tool created successfully.", toolId: savedTool._id });
   } catch (error) {
     console.error("Error creating tool:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
@@ -104,30 +103,40 @@ toolsController.updateTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolId = ObjectId.createFromHexString(req.params.id);
-    const tool = {
-      name: req.body.name,
+    const toolId = new mongoose.Types.ObjectId(req.params.id);
+
+    // Convert specifications object to array format
+    const specificationsArray = req.body.specifications
+      ? Object.entries(req.body.specifications).map(([key, value]) => ({
+          name: key,
+          value: value,
+        }))
+      : [];
+
+    // Prepare the update object
+    const updatedTool = {
+      tool: req.body.tool,
       brand: req.body.brand,
       model_number: req.body.model_number,
       category: req.body.category,
       size: req.body.size,
       set_id: req.body.set_id,
       power_source: req.body.power_source,
-      specifications: {
-        voltage: req.body.specifications?.voltage,
-        rpm: req.body.specifications?.rpm,
-        battery_type: req.body.specifications?.battery_type
-      },
+      specifications: [
+        { name: "Voltage", value: req.body.voltage },
+        { name: "RPM", value: req.body.rpm },
+      ],
+      description: req.body.description,
       image_url: req.body.image_url,
     };
 
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection("tools")
-      .replaceOne({ _id: toolId }, tool);
+    // Find tool by ID and update
+    const response = await Tool.findByIdAndUpdate(toolId, updatedTool, {
+      new: true, // Returns updated document
+      runValidators: true, // Ensures validation rules apply
+    });
 
-    if (response.modifiedCount > 0) {
+    if (response) {
       res.status(204).send();
     } else {
       res.status(404).json({ message: "Failed to update tool. No changes made." });
@@ -148,10 +157,13 @@ toolsController.deleteTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolId = ObjectId.createFromHexString(req.params.id);
-    const response = await mongodb.getDb().db().collection("tools").deleteOne({ _id: toolId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
+    const toolId = new mongoose.Types.ObjectId(req.params.id);
+
+    // Find and delete the tool
+    const deletedTool = await Tool.findByIdAndDelete(toolId);
+
+    if (deletedTool) {
+      res.status(204).send(); // 204 No Content (successful deletion)
     } else {
       res.status(404).json({ message: "Tool not found." });
     }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const toolSetSchema = new Schema({
-  name: String,
+  name: { type: String, required: true},
   brand: String,
   category: {
     type: String,
