@@ -1,6 +1,6 @@
 CSE 341 Final Project Proposal
 
-# General Info
+# Contributors
 
 Jacob Nelson
 Nathan Reeve
@@ -39,33 +39,84 @@ The data will be stored in MongoDB as collections of documents. Each collection 
 ## What pieces of data in your app will need to be secured? How will you demonstrate web security principles in the development of this app?
 
 ## What file structure and program architecture will you use for this project (how will you organize your node project)? Why?
-```
-├── src
-│   ├── auth
-│   ├── controllers
-│   │   ├── **/*.css
-│   ├── views
-│   ├── model
-│   ├── index.js
-├── public
-│   ├── css
-│   │   ├── **/*.css
-│   ├── images
-│   ├── js
-│   ├── index.html
-├── dist (or build
-├── node_modules
-├── package.json
-├── package-lock.json
-└── .gitignore
-```
-What are potential stretch challenges that you could implement to go above and beyond?
 
-For this section, you’ll plan out what API endpoints you’ll need for your project.
+```
+  ├── node_modules
+  ├── src
+  │   ├── auth
+  │   ├── controllers
+  │   │   ├── **/*.css
+  │   ├── data
+  │   ├── database
+  │   ├── models
+  │   ├── public
+  │   ├── routes
+  │   ├── utilities
+  ├── .env
+  ├── .gitignore
+  ├── app.js
+  ├── package.json
+  ├── package-lock.json
+  ├── swagger.js
+  └── swagger.json
+```
+
+It is best practice to structure a Node.js project by organizing files according to their purpose and placing them in appropriate directories.
+•	src: This folder contains all the files required to handle server like routes, controllers, models, views, etc.
+•	auth:  This folder contains files related to user authentication and authorization.
+•	controllers: This folder contains the business logic and validations for the input data received by the client side and performs their business logic.
+•	data:
+•	database:  This folder contains files related to database configuration and connection.
+•	models: This folder contains all the schemas of the database, like which kind of input will be received from client-side and server-side validations.
+•	public: This folder contains static files that are visible to people, like index.html, script.js, and images.
+•	routes: This folder contains all the routes and endpoints required for the server.
+•	utilities: This folder contains helper functions or reusable code that doesn't fit into a specific feature or module but is used across the project.
+•	.env:  This file contains details about environment variables that should be kept private.
+•	package.json: This file contains the data and details of all dependencies installed in the project.
+•	app.js: This is the entry point file of the server, which contains the main routes of the application and server ports from which the server will start listening, as well as the basic routes used in this application.
+
+
+<!-- https://medium.com/@jayjethava101/node-js-project-structure-best-practices-and-example-for-clean-code-3e1f5530fd3b -->
+<!-- https://medium.com/@akshatgadodia/a-comprehensive-guide-to-structuring-node-js-projects-best-practices-and-example-44eb493920ca -->
+<!-- https://reintech.io/blog/structuring-a-nodejs-project-a-comprehensive-guide-for-software-developers -->
+
+## What are potential stretch challenges that you could implement to go above and beyond?
+
+# API Endpoint Planning
+
+## For this section, you’ll plan out what API endpoints you’ll need for your project.
+
+- Users
+  - GET/users/
+  - POST/users/
+  - GET/users/{username}
+  - PUT/users/{username}
+  - DELETE/users/{username}
+
+- UserTools
+  - GET/userTools/
+  - POST/userTools/
+  - GET/userTools/{username}
+  - PUT/userTools/{username}
+  - DELETE/userTools/{username}
+
+- Tools
+  - GET/tools/
+  - POST/tools/
+  - GET/tools/{id}
+  - PUT/tools/{id}
+  - DELETE/tools/{id}
+
+- ToolSets
+  - GET/toolSets/
+  - POST/toolSets/
+  - GET/toolSets/{id}
+  - PUT/toolSets/{id}
+  - DELETE/toolSets/{id}
 
 # Project Scheduling and Delegation
 
-Plan out what tasks will get completed with each lesson remaining in the semester.
+## Plan out what tasks will get completed with each lesson remaining in the semester.
 
 | Lesson    | Tasks |
 | --------- | ----- |
@@ -83,7 +134,9 @@ Plan out what tasks will get completed with each lesson remaining in the semeste
 
 ## How will you mitigate or overcome these risks?
 
-# Database Structure
+# Appendix
+
+## Database Structure
 
 **User Collection:** Stores user account details, including authentication credentials, contact information, and role.
 
