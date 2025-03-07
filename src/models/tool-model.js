@@ -12,12 +12,12 @@ const SPECIFICATION_TYPES = [
 ];
 
 const toolSchema = new Schema({
-  tool: String,
+  tool: { type: String, required: true },
   brand: String,
   model_number: String,
   category: String,
   size: String,
-  set_id: ObjectId,
+  set_id: mongoose.ObjectId,
   power_source: { type: String, enum: ["battery", "corded", "manual"] },
   specifications: [
     {
@@ -27,7 +27,6 @@ const toolSchema = new Schema({
   ],
   description: String,
   image_url: String,
-
 });
 
 const Tool = mongoose.model("Tool", toolSchema);

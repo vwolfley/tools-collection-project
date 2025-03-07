@@ -6,20 +6,17 @@
 const favicon = require("serve-favicon");
 const express = require("express");
 const bodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
+// const MongoClient = require("mongodb").MongoClient;
+const swaggerUi = require("swagger-ui-express");
 const { auth } = require("express-openid-connect");
 
 // Local modules
+// const mongodb = require("./src/database/mongo-connect");
+const mongoose = require("./src/database/mongoose-connect");
 // require("./src/auth/passport-google");
 // require("./src/auth/passport-github");
 const config = require("./src/auth/auth0");
-
-// Swagger
-const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-
-// Local modules
-const mongodb = require("./src/database/mongo-connect");
 
 // Server Initialization
 const app = express();
@@ -52,10 +49,6 @@ app.use((req, res, next) => {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
-
-// app.get("/", (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-// });
 
 // Import the routes from the routes folder
 // app.use("/", require("./src/routes"));
@@ -91,7 +84,7 @@ const host = process.env.HOST || "localhost";
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-mongodb.initDb((err, mongodb) => {
+mongoose.initDb((err, mongoose) => {
   if (err) {
     console.error("❌ Database Connection Error:", err);
     process.exit(1); // Exit process if DB connection fails
