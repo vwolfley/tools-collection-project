@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const toolSetSchema = new Schema({
-  name: { type: String, required: true},
-  brand: String,
+  name: { type: String, required: true },
+  brand: { type: String },
   category: {
     type: String,
-    enum: ["Hand Tools", "Power Tools", "Mechanic Tools", "Woodworking", "Plumbing", "Other"],
+    enum: ["Hand Tools", "Power Tools", "Mechanic Tools", "Woodworking", "Plumbing", "Other", null],
   },
-  image_url: String,
-  description: String,
-  tools: [{ type: Schema.Types.ObjectId, ref: "Tool" }],
+  image_url: { type: String },
+  description: { type: String },
+  tools: [{ toolID: { type: mongoose.Schema.Types.ObjectId, ref: "Tool" } }],
 });
 
 const ToolSet = mongoose.model("ToolSet", toolSetSchema);

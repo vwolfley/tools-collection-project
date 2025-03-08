@@ -82,7 +82,7 @@ toolsController.createTool = async (req, res, next) => {
       description: req.body.description,
       image_url: req.body.image_url,
     };
-
+    // Use Mongoose to create a new document
     const newTool = new Tool.create(toolData);
 
     res.setHeader("Content-Type", "application/json");
@@ -103,7 +103,14 @@ toolsController.updateTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolId = new mongoose.Types.ObjectId(req.params.id);
+    const { id } = req.params;
+
+    // Validate before converting to avoid errors
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid ObjectId format" });
+    }
+    // Convert to ObjectId safely
+    const toolId = new mongoose.Types.ObjectId(id);
 
     // Convert specifications object to array format
     const specificationsArray = req.body.specifications

@@ -26,6 +26,7 @@ Data Points for Each Tool:
 
 ## User
 -  This stores the users account info.
+```
 {
 "\_id": "from MongoDB_ID",
 "username": "String UNIQUE",
@@ -35,8 +36,10 @@ Data Points for Each Tool:
 "email": "String",
 "phoneNumber": "String"
 }
+```
 
 Example: 
+```
 {
 "\_id": "from MongoDB_ID",
 "username": "Toolman66",
@@ -46,9 +49,10 @@ Example:
 "email": "vwtools@tools.com",
 "phoneNumber": "555-555-5555"
 }
-
+```
 ## User Tools Collection
 - This stores a user’s ownership details, linking to the tool’s general info via tool_id.
+```
 {
 "\_id": "from MongoDB_ID",
 "user_id": "String",
@@ -62,8 +66,9 @@ Example:
 "notes": "String",
 "loanedTo": "String",
 }
-
+```
 Example:
+```
 {
 "\_id": "67890",
 "user_id": "user_001",
@@ -77,9 +82,10 @@ Example:
 "notes": "Replaced battery in Jan 2024",
 "loanedTo": "John Green",
 }
-
+```
 ## Tools Collection
 - This stores general data about tools, independent of any specific user.
+```
 {
 "\_id": "from MongoDB_ID",
 "name": "String",
@@ -96,8 +102,10 @@ Example:
 },
 "image_url": "String"
 }
+```
 
 Example:
+```
 {
 "\_id": "12345",
 "name": "Cordless Drill",
@@ -114,6 +122,7 @@ Example:
 },
 "image_url": "https://example.com/drill.jpg"
 }
+```
 
 
 
@@ -124,6 +133,7 @@ Example:
 - The set_id links the tool to a tool set.
 
 Example:
+```
 {
   "id": "set_001",
   "name": "Craftsman 10-Piece Wrench Set",
@@ -136,3 +146,4 @@ Example:
     "tool_103"
   ]
 }
+```

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const locations = ['Garage', 'Tool Box', 'Truck', 'Shed', 'Basement', 'Work Bench','Trailer', null];
+
 const userToolSchema = new Schema({
   user_id: { type: ObjectId, ref: "User" },
   tool_id: { type: ObjectId, ref: "Tool" },
