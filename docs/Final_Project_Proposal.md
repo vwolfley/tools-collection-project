@@ -99,6 +99,8 @@ It is best practice to structure a Node.js project by organizing files according
 
 ## What are potential stretch challenges that you could implement to go above and beyond?
 
+As a team we were looking into potentially both utilizing Typescript and looking into GraphQL API
+
 # API Endpoint Planning
 
 ## For this section, you’ll plan out what API endpoints you’ll need for your project.
@@ -135,10 +137,10 @@ It is best practice to structure a Node.js project by organizing files according
 
 ## Plan out what tasks will get completed with each lesson remaining in the semester.
 
-| Lesson    | Tasks |
-| --------- | ----- |
-| Lesson 9  | Project Proposal   |
-| Lesson 10 |  •	Add, Update, and test routes
+| Lesson    | Tasks                          |
+| --------- | ------------------------------ |
+| Lesson 9  | Project Proposal               |
+| Lesson 10 | •	Add, Update, and test routes |
 •	Add and or update swagger documentation
 •	Publish to Render.com 
 •	Create video documentation of progress     |
@@ -159,11 +161,23 @@ It is best practice to structure a Node.js project by organizing files according
 
 ## How will you divide up work in your team to ensure the following tasks all get completed?
 
+As a team, we plan to create a detailed list of all tasks using GitHub Issues. This will allow us to track progress, assign tasks to team members, and ensure accountability throughout the project.
+
 # Potential Risks and Risk Mitigation Techniques
 
 ## What are the risks involved with you being able to finish this project in a timely manner?
 
+If individual tasks take longer than expected, they can delay dependent tasks, causing setbacks in the overall timeline. Additionally, conflicting schedules or other commitments among team members may slow progress, making it harder to stay on track. Miscommunication about responsibilities can lead to duplicate efforts or overlooked tasks, further complicating workflow. Unforeseen technical challenges, such as integration issues or debugging complexities, may also arise, requiring additional time to resolve and potentially impacting the project's completion.
+
 ## How will you mitigate or overcome these risks?
+
+To help mitigate these and any other unforeseen risks we could utilizes these strategies.
+•	Use a project management tool (e.g., Trello, GitHub Projects) to track tasks and deadlines. 
+•	Break tasks into smaller milestones to ensure steady progress and early issue detection. 
+•	Implement Agile practices with regular check-ins to adjust priorities if needed. 
+•	Set realistic deadlines and allocate buffer time for debugging and unexpected blockers. 
+•	Maintain clear documentation to avoid miscommunication
+
 
 # Appendix
 
