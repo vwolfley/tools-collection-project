@@ -36,9 +36,26 @@ The data will be stored in MongoDB as collections of documents. Each collection 
 
 ## How would a frontend be able to manage authentication state based on the data you provide?
 
-## What pieces of data in your app will need to be secured? How will you demonstrate web security principles in the development of this app?
+To manage authentication state, the frontend will provide users with an interface to log in using their username and password. Upon successful authentication, a token will be issued and stored in local storage. The frontend will use this token to manage authentication state, ensuring users remain logged in while their session is valid. 
+
+## What pieces of data in your app will need to be secured?
+
+The application will handle user data, including:
+•	Personal information (name, email, authentication credentials)
+•	Tool ownership records (personal tool list, tool set details)
+•	User-generated data (tools marked as lost, stolen, or borrowed)
+Since this data is personal and sensitive, it should be protected from unauthorized access, leaks, and manipulation.
+
+## How will you demonstrate web security principles in the development of this app?
+
+By utilizing these following principles, the app will ensure data integrity, user privacy, and protection against common security threats.
+•	Implement OAuth 2.0 for secure user authentication, ensuring only authorized users access their tool data.
+•	Hash passwords with bcrypt before storing them in the database.
+•	Use HTTPS (TLS/SSL) to encrypt data in transit.
+•	Use JWT (JSON Web Tokens) or OAuth tokens for session management.
 
 ## What file structure and program architecture will you use for this project (how will you organize your node project)? Why?
+For this project, we will use a MVC (Model-View-Controller) architecture to keep concerns separated and the codebase modular. The file structure will be organized as follows:
 
 ```
   ├── node_modules
@@ -120,11 +137,25 @@ It is best practice to structure a Node.js project by organizing files according
 
 | Lesson    | Tasks |
 | --------- | ----- |
-| Lesson 9  |       |
-| Lesson 10 |       |
-| Lesson 11 |       |
-| Lesson 12 |       |
-| Lesson 13 |       |
+| Lesson 9  | Project Proposal   |
+| Lesson 10 |  •	Add, Update, and test routes
+•	Add and or update swagger documentation
+•	Publish to Render.com 
+•	Create video documentation of progress     |
+| Lesson 11 | •	Continued testing of API routes
+•	Continued testing of business logic
+•	Begin developing unit testing using Jest
+      |
+| Lesson 12 |  •	Continued testing of API routes
+•	Continued testing of business logic
+•	Continued development of unit testing using Jest
+•	Look at possible front end development     |
+| Lesson 13 |  •	Final API testing
+•	Front end development
+•	Passing all tests
+•	Publish to Render.com
+•	Double check project checklist
+•	Create video documentation of progress     |
 
 ## How will you divide up work in your team to ensure the following tasks all get completed?
 
