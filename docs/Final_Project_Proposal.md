@@ -1,16 +1,16 @@
-CSE 341 Final Project Proposal
+# CSE 341 Final Project Proposal
 
-# Contributors
+## Contributors
 
-Jacob Nelson
-Nathan Reeve
-Vern Wolfley
+- Jacob Nelson
+- Nathan Reeve
+- Vern Wolfley
 
-Tools Collection Project
+# Tools Collection Project
 
-Contents
+## Contents
 
-\[Produce a table of contents for your proposal\]
+Produce a table of contents for your proposal
 
 # Application Info
 
@@ -41,18 +41,19 @@ To manage authentication state, the frontend will provide users with an interfac
 ## What pieces of data in your app will need to be secured?
 
 The application will handle user data, including:
-•	Personal information (name, email, authentication credentials)
-•	Tool ownership records (personal tool list, tool set details)
-•	User-generated data (tools marked as lost, stolen, or borrowed)
+- Personal information (name, email, authentication credentials)
+- Tool ownership records (personal tool list, tool set details)
+- User-generated data (tools marked as lost, stolen, or borrowed)
+  
 Since this data is personal and sensitive, it should be protected from unauthorized access, leaks, and manipulation.
 
 ## How will you demonstrate web security principles in the development of this app?
 
 By utilizing these following principles, the app will ensure data integrity, user privacy, and protection against common security threats.
-•	Implement OAuth 2.0 for secure user authentication, ensuring only authorized users access their tool data.
-•	Hash passwords with bcrypt before storing them in the database.
-•	Use HTTPS (TLS/SSL) to encrypt data in transit.
-•	Use JWT (JSON Web Tokens) or OAuth tokens for session management.
+- Implement OAuth 2.0 for secure user authentication, ensuring only authorized users access their tool data.
+- Hash passwords with bcrypt before storing them in the database.
+- Use HTTPS (TLS/SSL) to encrypt data in transit.
+- Use JWT (JSON Web Tokens) or OAuth tokens for session management.
 
 ## What file structure and program architecture will you use for this project (how will you organize your node project)? Why?
 For this project, we will use a MVC (Model-View-Controller) architecture to keep concerns separated and the codebase modular. The file structure will be organized as follows:
@@ -79,18 +80,18 @@ For this project, we will use a MVC (Model-View-Controller) architecture to keep
 ```
 
 It is best practice to structure a Node.js project by organizing files according to their purpose and placing them in appropriate directories.
-•	src: This folder contains all the files required to handle server like routes, controllers, models, views, etc.
-•	auth:  This folder contains files related to user authentication and authorization.
-•	controllers: This folder contains the business logic and validations for the input data received by the client side and performs their business logic.
-•	data:
-•	database:  This folder contains files related to database configuration and connection.
-•	models: This folder contains all the schemas of the database, like which kind of input will be received from client-side and server-side validations.
-•	public: This folder contains static files that are visible to people, like index.html, script.js, and images.
-•	routes: This folder contains all the routes and endpoints required for the server.
-•	utilities: This folder contains helper functions or reusable code that doesn't fit into a specific feature or module but is used across the project.
-•	.env:  This file contains details about environment variables that should be kept private.
-•	package.json: This file contains the data and details of all dependencies installed in the project.
-•	app.js: This is the entry point file of the server, which contains the main routes of the application and server ports from which the server will start listening, as well as the basic routes used in this application.
+- src: This folder contains all the files required to handle server like routes, controllers, models, views, etc.
+- auth:  This folder contains files related to user authentication and authorization.
+- controllers: This folder contains the business logic and validations for the input data received by the client side and performs their business logic.
+- data:
+- database:  This folder contains files related to database configuration and connection.
+- models: This folder contains all the schemas of the database, like which kind of input will be received from client-side and server-side validations.
+- public: This folder contains static files that are visible to people, like index.html, script.js, and images.
+- routes: This folder contains all the routes and endpoints required for the server.
+- utilities: This folder contains helper functions or reusable code that doesn't fit into a specific feature or module but is used across the project.
+- .env:  This file contains details about environment variables that should be kept private.
+- package.json: This file contains the data and details of all dependencies installed in the project.
+- app.js: This is the entry point file of the server, which contains the main routes of the application and server ports from which the server will start listening, as well as the basic routes used in this application.
 
 
 <!-- https://medium.com/@jayjethava101/node-js-project-structure-best-practices-and-example-for-clean-code-3e1f5530fd3b -->
@@ -141,23 +142,22 @@ As a team we were looking into potentially both utilizing Typescript and looking
 | --------- | ------------------------------ |
 | Lesson 9  | Project Proposal               |
 | Lesson 10 | •	Add, Update, and test routes |
-•	Add and or update swagger documentation
-•	Publish to Render.com 
-•	Create video documentation of progress     |
-| Lesson 11 | •	Continued testing of API routes
-•	Continued testing of business logic
-•	Begin developing unit testing using Jest
-      |
-| Lesson 12 |  •	Continued testing of API routes
-•	Continued testing of business logic
-•	Continued development of unit testing using Jest
-•	Look at possible front end development     |
+|           | • Add and or update swagger documentation |
+|          |  •	Publish to Render.com |
+|          |  •	Create video documentation of progress     |
+| Lesson 11 | •	Continued testing of API routes |
+|            |•	Continued testing of business logic |
+|          | •	Begin developing unit testing using Jest |
+| Lesson 12 |  •	Continued testing of API routes |
+|          |•	Continued testing of business logic |
+||•	Continued development of unit testing using Jest |
+||•	Look at possible front end development     |
 | Lesson 13 |  •	Final API testing
-•	Front end development
-•	Passing all tests
-•	Publish to Render.com
-•	Double check project checklist
-•	Create video documentation of progress     |
+||•	Front end development
+||•	Passing all tests
+||•	Publish to Render.com
+||•	Double check project checklist
+||•	Create video documentation of progress     |
 
 ## How will you divide up work in your team to ensure the following tasks all get completed?
 
