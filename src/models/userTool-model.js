@@ -26,6 +26,6 @@ const userToolSchema = new Schema({
   last_updated: { type: Date, default: Date.now }
 });
 
-const UserTool = mongoose.model("UserTool", userToolSchema);
+const UserTool = mongoose.model("UserTool", userToolSchema, "userTools");
 
 module.exports = UserTool;

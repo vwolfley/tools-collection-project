@@ -71,9 +71,6 @@
         ],
         "summary": "Add a user",
         "description": "Add a user to the database",
-        "produces": [
-          "application/json"
-        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -141,6 +138,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -172,8 +176,8 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -204,19 +208,13 @@
                   "username": {
                     "example": "any"
                   },
-                  "password": {
-                    "example": "any"
-                  },
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
                   "email": {
                     "example": "any"
                   },
-                  "phoneNumber": {
+                  "password": {
+                    "example": "any"
+                  },
+                  "updateData": {
                     "example": "any"
                   }
                 }
@@ -527,7 +525,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "tool": {
                     "example": "any"
                   },
                   "brand": {
@@ -548,7 +546,13 @@
                   "power_source": {
                     "example": "any"
                   },
-                  "specifications": {
+                  "voltage": {
+                    "example": "any"
+                  },
+                  "rpm": {
+                    "example": "any"
+                  },
+                  "description": {
                     "example": "any"
                   },
                   "image_url": {
@@ -582,6 +586,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -610,6 +617,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -626,7 +636,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "specifications": {
+                    "example": "any"
+                  },
+                  "tool": {
                     "example": "any"
                   },
                   "brand": {
@@ -647,7 +660,13 @@
                   "power_source": {
                     "example": "any"
                   },
-                  "specifications": {
+                  "voltage": {
+                    "example": "any"
+                  },
+                  "rpm": {
+                    "example": "any"
+                  },
+                  "description": {
                     "example": "any"
                   },
                   "image_url": {
@@ -676,8 +695,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -742,6 +761,9 @@
                   "image_url": {
                     "example": "any"
                   },
+                  "description": {
+                    "example": "any"
+                  },
                   "tools": {
                     "example": "any"
                   }
@@ -773,6 +795,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -800,6 +825,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -829,6 +857,9 @@
                   "image_url": {
                     "example": "any"
                   },
+                  "description": {
+                    "example": "any"
+                  },
                   "tools": {
                     "example": "any"
                   }
@@ -855,8 +886,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"

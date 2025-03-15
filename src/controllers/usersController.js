@@ -3,14 +3,14 @@
   functions for the routes in users.js
  ******************************************/
 const bcrypt = require("bcryptjs");
-const User = require("../models/user-model");
+const userModel = require("../models/user-model");
 
 const usersController = {};
 
 /* **************************
  * Get all users
  ****************************/
-usersController.getAll = async (req, res, next) => {
+usersController.getAllUsers = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all users'
     #swagger.description = 'Returns all users'
@@ -20,7 +20,7 @@ usersController.getAll = async (req, res, next) => {
     }]
   */
   try {
-    const users = await User.find({});
+    const users = await userModel.getAllUsers();
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(users);
   } catch (error) {
@@ -32,16 +32,16 @@ usersController.getAll = async (req, res, next) => {
 /* **************************
  * Get user by User Name
  ****************************/
-usersController.getUser = async (req, res, next) => {
+usersController.getByUserName = async (req, res, next) => {
   /*
     #swagger.summary = 'Get user by username'
     #swagger.description = 'Returns a user with specified username'
     #swagger.tags = ['Users']
   */
   try {
-    const username = req.params.username;
-
-    const result = await User.findOne({ username: username }).exec();
+    // const username = req.params.username;
+    const username = req.query.username;
+    const result = await userModel.getUser({ username: username });
 
     if (!result) {
       return res.status(404).json({ message: "User not found." });
@@ -49,8 +49,50 @@ usersController.getUser = async (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(result);
   } catch (error) {
-    console.error(`Error fetching user "${req.params.username}":`, error);
+    console.error(`Error fetching user "${username}":`, error);
     return res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
+  }
+};
+
+/* **************************
+ * Get user by User email
+ ****************************/
+usersController.getByUserEmail = async (req, res, next) => {
+  /*
+    #swagger.summary = 'Get user by user email'
+    #swagger.description = 'Returns a user with specified user email'
+    #swagger.tags = ['Users']
+  */
+  try {
+    // const email = req.params.email;
+    const email = req.query.email;
+    const result = await userModel.getUser({ email: email });
+
+    if (!result) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(`Error fetching user "${email}":`, error);
+    return res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
+  }
+};
+
+usersController.getByQuery = async (req, res) => {
+  /*
+    #swagger.summary = 'Get user by username or email'
+    #swagger.description = 'Returns a user with specified username or email'
+    #swagger.tags = ['Users']
+  */
+  const { username, email } = req.query;
+
+  if (username) {
+    return usersController.getByUserName(req, res);
+  } else if (email) {
+    return usersController.getByUserEmail(req, res);
+  } else {
+    return res.status(400).json({ message: "Please provide a username or email" });
   }
 };
 
@@ -70,29 +112,32 @@ usersController.createUser = async (req, res, next) => {
     const { username, password, firstName, lastName, email, phoneNumber } = req.body;
 
     // Check if the username is already taken
-    const existingUser = await User.findOne({ username: username }).exec();
-    if (existingUser) {
-      return res.status(400).json({ message: "Username is already taken." });
-    }
-
     // Check if the email is already taken
-    const existingEmail = await User.findOne({ email: email }).exec();
-    if (existingEmail) {
-      return res.status(400).json({ message: "Email address is already taken." });
+    const existingUser = await userModel.getUser({
+      $or: [{ username }, { email }],
+    });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message:
+          existingUser.username === username
+            ? "Username is already taken."
+            : "Email address is already taken.",
+      });
     }
 
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create and save new user document
-    const newUser = await User.create({
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-      password: hashedPassword,
-    });
+    const newUser = await userModel.createUser(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      hashedPassword,
+    );
 
     res.status(201).json({ message: "User created successfully.", userId: newUser._id });
   } catch (error) {
@@ -180,14 +225,14 @@ usersController.deleteUser = async (req, res, next) => {
     const username = req.params.username;
 
     // Find and delete the user
-    const deletedUser = await User.findOneAndDelete({ username });
+    const deletedUser = await userModel.deleteUser(username);
 
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found." });
     }
 
     // Return success and the deleted user (optional, for logging purposes)
-    res.status(200).json({ message: "User deleted successfully.", user: deletedUser });
+    res.status(200).json({ message: "User deleted successfully.", user: deletedUser.username });
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
