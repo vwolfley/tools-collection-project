@@ -82,6 +82,19 @@ userModel.createUser = async function (
 /* *****************************
  *   Update a user
  * *************************** */
+userModel.updateUser = async function (username, updateData) {
+  try {
+    const result = await User.findOneAndUpdate(
+      { username: username }, // Find user by current username
+      { $set: updateData }, // Update only provided fields
+      { new: true, runValidators: true }, // Return updated document & enforce schema validation
+    );
+    return result;
+  } catch (error) {
+    console.error(`Error updating user "${username}":`, error);
+    return error.message;
+  }
+};
 
 /* *****************************
  *   Delete a user

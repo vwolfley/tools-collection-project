@@ -163,14 +163,14 @@ usersController.updateUser = async (req, res, next) => {
     const { username: userNameBody, email: emailBody, password, ...updateData } = req.body; // Extract username, password, and other fields
 
     // Check if the user exists
-    const existingUser = await User.findOne({ username: userNameParam });
+    const existingUser = await userModel.getUser({ username: userNameParam });
     if (!existingUser) {
       return res.status(404).json({ message: "User not found." });
     }
 
     // If updating username, check if the new username is already taken
     if (userNameBody && userNameBody !== userNameParam) {
-      const usernameExists = await User.findOne({ username: userNameBody });
+      const usernameExists = await userModel.getUser({ username: userNameBody });
       if (usernameExists) {
         return res.status(400).json({ message: "Username is already taken." });
       }
@@ -184,7 +184,7 @@ usersController.updateUser = async (req, res, next) => {
 
     // If updating email, check if the new email is already taken
     if (emailBody && emailBody !== existingUser.email) {
-      const emailExists = await User.findOne({ email: emailBody });
+      const emailExists = await userModel.getUser({ email: emailBody });
       if (emailExists) {
         return res.status(400).json({ message: "Email is already in use." });
       }
@@ -192,11 +192,7 @@ usersController.updateUser = async (req, res, next) => {
     }
 
     // Update the user
-    const updatedUser = await User.findOneAndUpdate(
-      { username: userNameParam }, // Find user by current username
-      { $set: updateData }, // Update only provided fields
-      { new: true, runValidators: true }, // Return updated document & enforce schema validation
-    );
+    const updatedUser = await userModel.updateUser(userNameParam, updateData);
 
     if (!updatedUser) {
       return res.status(400).json({ message: "Failed to update user. No changes made." });
