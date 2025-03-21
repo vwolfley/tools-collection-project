@@ -160,7 +160,7 @@ usersController.updateUser = async (req, res, next) => {
   */
   try {
     const { username: userNameParam } = req.params; // Username from URL
-    const { username: userNameBody, email: emailBody, password, ...updateData } = req.body; // Extract username, password, and other fields
+    const { firstName, lastName, email, phoneNumber } = req.body; // Extract username, password, and other fields
 
     // Check if the user exists
     const existingUser = await userModel.getUser({ username: userNameParam });
@@ -168,31 +168,22 @@ usersController.updateUser = async (req, res, next) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // If updating username, check if the new username is already taken
-    if (userNameBody && userNameBody !== userNameParam) {
-      const usernameExists = await userModel.getUser({ username: userNameBody });
-      if (usernameExists) {
-        return res.status(400).json({ message: "Username is already taken." });
-      }
-      updateData.username = userNameBody; // Set new username if valid
-    }
-
-    // Hash the password before saving (if updating password)
-    if (password) {
-      updateData.password = await bcrypt.hash(password, 10);
-    }
-
     // If updating email, check if the new email is already taken
-    if (emailBody && emailBody !== existingUser.email) {
-      const emailExists = await userModel.getUser({ email: emailBody });
+    if (email !== existingUser.email) {
+      const emailExists = await userModel.getUser({email: email});
       if (emailExists) {
         return res.status(400).json({ message: "Email is already in use." });
       }
-      updateData.email = emailBody; // Set new email if valid
     }
 
     // Update the user
-    const updatedUser = await userModel.updateUser(userNameParam, updateData);
+    const updatedUser = await userModel.updateUser(
+      userNameParam,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+    );
 
     if (!updatedUser) {
       return res.status(400).json({ message: "Failed to update user. No changes made." });

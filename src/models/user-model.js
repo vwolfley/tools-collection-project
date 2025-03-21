@@ -82,11 +82,18 @@ userModel.createUser = async function (
 /* *****************************
  *   Update a user
  * *************************** */
-userModel.updateUser = async function (username, updateData) {
+userModel.updateUser = async function (username, firstName, lastName, email, phoneNumber) {
   try {
+     // Filter out undefined values to prevent overwriting existing data
+     const updateFields = {};
+     if (firstName !== undefined) updateFields.firstName = firstName;
+     if (lastName !== undefined) updateFields.lastName = lastName;
+     if (email !== undefined) updateFields.email = email;
+     if (phoneNumber !== undefined) updateFields.phoneNumber = phoneNumber;
+    // Update user document
     const result = await User.findOneAndUpdate(
-      { username: username }, // Find user by current username
-      { $set: updateData }, // Update only provided fields
+      { username}, // Find user by current username
+      { $set: updateFields  }, // Update only provided fields
       { new: true, runValidators: true }, // Return updated document & enforce schema validation
     );
     return result;

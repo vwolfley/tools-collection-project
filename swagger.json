@@ -205,16 +205,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": {
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
                     "example": "any"
                   },
                   "email": {
                     "example": "any"
                   },
-                  "password": {
-                    "example": "any"
-                  },
-                  "updateData": {
+                  "phoneNumber": {
                     "example": "any"
                   }
                 }

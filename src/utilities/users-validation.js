@@ -77,6 +77,50 @@ validate.usersRules = () => {
   ];
 };
 
+
+/*  **********************************
+ *  User Update Data Validation Rules
+ * ********************************* */
+validate.userUpdateRules = () => {
+  return [
+    // firstName is required and must be string
+    body("firstName")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("First Name cannot be empty")
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+    // lastName is required and must be string
+    body("lastName")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Last Name cannot be empty")
+      .isLength({ min: 2 })
+      .withMessage("Please provide a last name."),
+
+    // valid email is required
+    body("email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Email cannot be empty")
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required."),
+
+    // valid phone number is required
+    body("phoneNumber")
+      .trim()
+      .notEmpty()
+      .withMessage("Phone number cannot be empty")
+      .matches(/^\d{10}$/)
+      .withMessage("Please enter a valid 10-digit phone number (numbers only)."),
+  ];
+};
+
 /* ******************************
  *  Check data and return errors or continue to update
  * ***************************** */

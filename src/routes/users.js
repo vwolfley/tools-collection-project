@@ -18,7 +18,7 @@ router.post("/", validate.usersRules(), validate.checkUsersData, usersController
 // Update users by username
 router.put(
   "/:username",
-  validate.usersRules(),
+  validate.userUpdateRules(),
   validate.checkUsersData,
   usersController.updateUser,
 );
