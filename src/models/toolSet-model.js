@@ -13,6 +13,7 @@ const toolSetSchema = new Schema({
   tools: [{ toolID: { type: mongoose.Schema.Types.ObjectId, ref: "Tool" } }],
 });
 
-const ToolSet = mongoose.model("ToolSet", toolSetSchema);
+const ToolSet = mongoose.model("ToolSet", toolSetSchema, "toolSets");
 
 module.exports = ToolSet;
+

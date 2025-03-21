@@ -1,0 +1,194 @@
+[{
+  "_id": {
+    "$oid": "67a3f56bf25c939609de71cd"
+  },
+  "username": "Toolman66",
+  "password": "$2b$10$J1hgYud1urkVJWLuq.IAsuHE0OGhe/1LPG/NBhLs.Ps.T.5yw3Vsm",
+  "firstName": "Vern",
+  "lastName": "Wolfley",
+  "email": "vwtools@tools.com",
+  "phoneNumber": "5555552222",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a3fe24f25c939609de71e2"
+  },
+  "username": "ToolMaster42",
+  "password": "$2b$10$pKSDyhj/gFX10TGGvAaPHuQhjBLqK58aFr4V57cIFJRaLHzEjSSVm",
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "email": "alice@toolsmaster.com",
+  "phoneNumber": "5552345678",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a3fe24f25c939609de71e5"
+  },
+  "username": "TechTinker",
+  "password": "T3chT1nk3r@123",
+  "firstName": "Bob",
+  "lastName": "Miller",
+  "email": "bob@techtinker.com",
+  "phoneNumber": "555-567-8901",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a3fe24f25c939609de71e4"
+  },
+  "username": "CraftyCarl",
+  "password": "Cr@ftyC@rl23",
+  "firstName": "Carl",
+  "lastName": "Davis",
+  "email": "carl@craftytools.com",
+  "phoneNumber": "555-456-7890",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a3fe24f25c939609de71e3"
+  },
+  "username": "FixItFred",
+  "password": "F1x!tF@bric4",
+  "firstName": "Fred",
+  "lastName": "Thompson",
+  "email": "fred@fixit.com",
+  "phoneNumber": "555-345-6789",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a3fe24f25c939609de71e1"
+  },
+  "username": "GadgetGuy99",
+  "password": "$2b$10$j3ebLuFQIp7/1g1TBSmpoutqhTJIx/.mrZ7vtpunP/a3r2P5WH.fC",
+  "firstName": "Sam",
+  "lastName": "Smith",
+  "email": "samtools@gadgets.com",
+  "phoneNumber": "5551234567",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a417386a06f3a3d40f5950"
+  },
+  "username": "Toolgirl333",
+  "password": "T00lPa$$word",
+  "firstName": "Elena",
+  "lastName": "Scott",
+  "email": "vwtools@tools.com",
+  "phoneNumber": "623-555-5555",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a5527bb56514295eaa45c5"
+  },
+  "username": "TomBoy333",
+  "password": "T00lPa$$word",
+  "firstName": "Meghan",
+  "lastName": "Scott",
+  "email": "girlPower@tools.com",
+  "phoneNumber": "623-555-3333",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a67a0070d0fed5af276bb8"
+  },
+  "username": "Toolgirl33",
+  "password": "T00lPa$$word",
+  "firstName": "Elena",
+  "lastName": "Wolfley",
+  "email": "vwtools@tools.com",
+  "phoneNumber": "555-555-5555",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67a688d818db323b8c808dec"
+  },
+  "username": "ToolMaster42333",
+  "password": "T00lM@st3r!4444",
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "email": "alice@toolsmaster.com",
+  "phoneNumber": "555-234-5555",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67b141a9dc73776049a26862"
+  },
+  "username": "ToolMaster55",
+  "password": "T00lM@st3r!44",
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "email": "alice@toolsmaster.com",
+  "phoneNumber": "5552345555",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67b1421ddc73776049a26863"
+  },
+  "username": "ToolMaster555",
+  "password": "$2b$10$/4hfNkLQSaJDEzMhFRfJv.h9KYbYja2EX.L5a0GtiAxMT2xcprtxu",
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "email": "alice@toolsmaster.com",
+  "phoneNumber": "5552345511",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67b14351dc73776049a26864"
+  },
+  "username": "ToolMaster5551",
+  "password": "$2b$10$G4eQutzD2UNOwAbSl8AdOurnRxpOjj9E1MJdHb878iXW3kjXRQJTy",
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "email": "alice@toolsmaster.com",
+  "phoneNumber": "5552345555",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67c6117c51d75c2dac62771e"
+  },
+  "username": "boJangles",
+  "password": "helpmeNow!988",
+  "firstName": "Bo",
+  "lastName": "Jackson",
+  "email": "bo@base.com",
+  "phoneNumber": "5556743124",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67d5e4a9091ac27fc0c13bb0"
+  },
+  "username": "toolman668",
+  "firstName": "Guy",
+  "lastName": "Fox",
+  "phoneNumber": "5555552222",
+  "email": "gftools@tools.com",
+  "password": "$2b$10$O0sLDNWqaKnvhDaw2F7mY.cPfr43iTz2Kcmu.leK0q2RzzuBOzMbe",
+  "role": "user",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d5e998d3a92cedd06faff6"
+  },
+  "username": "toolguy22",
+  "firstName": "Guyugly",
+  "lastName": "Foxtime",
+  "phoneNumber": "5555552222",
+  "email": "ufgftools@tools.com",
+  "password": "$2b$10$an/kTx.R7VpOozgIne1Z6uSk/S9NntUWgFJLzg6CAxB/uXUetDMQG",
+  "role": "user",
+  "__v": 0
+}]
