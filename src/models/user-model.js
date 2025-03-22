@@ -34,7 +34,7 @@ userModel.getAllUsers = async function () {
     return users;
   } catch (error) {
     console.error("Error getting users:", error);
-    return error.message;
+    throw error; // Let the controller handle the error
   }
 };
 
@@ -47,7 +47,7 @@ userModel.getUser = async function (parameter) {
     return result;
   } catch (error) {
     console.error(`Error fetching user "${parameter}":`, error);
-    return error.message;
+    throw error; // Let the controller handle the error
   }
 };
 
@@ -75,7 +75,7 @@ userModel.createUser = async function (
     return newUser;
   } catch (error) {
     console.error("Error creating user:", error);
-    return error.message;
+    throw error; // Let the controller handle the error
   }
 };
 
@@ -99,7 +99,7 @@ userModel.updateUser = async function (username, firstName, lastName, email, pho
     return result;
   } catch (error) {
     console.error(`Error updating user "${username}":`, error);
-    return error.message;
+    throw error; // Let the controller handle the error
   }
 };
 
@@ -112,7 +112,7 @@ userModel.deleteUser = async function (username) {
     return result;
   } catch (error) {
     console.error(`Error deleting user "${username}":`, error);
-    return error.message;
+    throw error; // Let the controller handle the error
   }
 };
 

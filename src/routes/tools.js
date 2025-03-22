@@ -6,9 +6,9 @@ const utilities = require("../utilities/");
 const validate = require("../utilities/tools-validation");
 
 // Get all tools
-router.get("/", toolsController.getAll);
+router.get("/", toolsController.getAllTools);
 // Get tools by id
-router.get("/:id", toolsController.getTool);
+router.get("/:id", toolsController.getToolByID);
 // Insert one tools into the database
 router.post("/", validate.toolsRules(), validate.checkToolsData, toolsController.createTool);
 // Update tools by id

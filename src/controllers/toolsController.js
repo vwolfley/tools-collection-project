@@ -2,22 +2,22 @@
  * @desc: This file contains the controller
   functions for the routes in tools.js
  ******************************************/
-const mongoose = require("mongoose");
-const Tool = require("../models/tool-model");
+// const mongoose = require("mongoose");
+const toolModel = require("../models/tool-model");
 
 const toolsController = {};
 
 /* **************************
  * Get all tools
  ****************************/
-toolsController.getAll = async (req, res, next) => {
+toolsController.getAllTools = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all tools'
     #swagger.description = 'Returns all tools'
     #swagger.tags = ['Tools']
   */
   try {
-    const tools = await Tool.find({});
+    const tools = await toolModel.getAllTools();
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(tools);
   } catch (error) {
@@ -29,7 +29,7 @@ toolsController.getAll = async (req, res, next) => {
 /* **************************
  * Get tool by id
  ****************************/
-toolsController.getTool = async (req, res, next) => {
+toolsController.getToolByID = async (req, res, next) => {
   /*
     #swagger.summary = 'Get tool by id'
     #swagger.description = 'Returns a tool with specified id'
@@ -43,7 +43,7 @@ toolsController.getTool = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid tool ID format." });
     }
 
-    const tool = await Tool.findById(id);
+    const tool = await toolModel.getTool({ _id: id });
 
     if (!tool) {
       return res.status(404).json({ message: "Tool not found." });
@@ -67,26 +67,35 @@ toolsController.createTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolData = {
-      tool: req.body.tool,
-      brand: req.body.brand,
-      model_number: req.body.model_number,
-      category: req.body.category,
-      size: req.body.size,
-      set_id: mongoose.Types.ObjectId(req.body.set_id),
-      power_source: req.body.power_source,
-      specifications: [
-        { name: "Voltage", value: req.body.voltage },
-        { name: "RPM", value: req.body.rpm },
-      ],
-      description: req.body.description,
-      image_url: req.body.image_url,
-    };
-    // Use Mongoose to create a new document
-    const newTool = new Tool.create(toolData);
+    const {
+      tool,
+      brand,
+      model_number,
+      category,
+      size,
+      set_id,
+      power_source,
+      specifications,
+      description,
+      image_url,
+    } = req.body;
+
+    // Create and save new user document
+    const newTool = await toolModel.createTool(
+      tool,
+      brand,
+      model_number,
+      category,
+      size,
+      set_id,
+      power_source,
+      specifications,
+      description,
+      image_url,
+    );
 
     res.setHeader("Content-Type", "application/json");
-    res.status(201).json({ message: "Tool created successfully.", toolId: savedTool._id });
+    res.status(201).json({ message: "Tool created successfully.", toolId: newTool._id });
   } catch (error) {
     console.error("Error creating tool:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
@@ -98,53 +107,55 @@ toolsController.createTool = async (req, res, next) => {
  **********************************************/
 toolsController.updateTool = async (req, res, next) => {
   /*
-    #swagger.summary = 'Update a existing tool by id'
-    #swagger.description = 'Update a existing tool in the database by id'
+    #swagger.summary = 'Update an existing tool by id'
+    #swagger.description = 'Update an existing tool in the database by id'
     #swagger.tags = ['Tools']
   */
   try {
-    const { id } = req.params;
+    const { id } = req.params; // ID should come from params
+    const {
+      tool,
+      brand,
+      model_number,
+      category,
+      size,
+      set_id,
+      power_source,
+      specifications,
+      description,
+      image_url,
+    } = req.body; // Tool data should come from the body
 
-    // Validate before converting to avoid errors
+    // Validate ObjectId before using it
     if (!mongoose.isValidObjectId(id)) {
       return res.status(400).json({ message: "Invalid ObjectId format" });
     }
-    // Convert to ObjectId safely
-    const toolId = new mongoose.Types.ObjectId(id);
 
-    // Convert specifications object to array format
-    const specificationsArray = req.body.specifications
-      ? Object.entries(req.body.specifications).map(([key, value]) => ({
+    // Convert specifications object to array format if needed
+    const specificationsArray = specifications
+      ? Object.entries(specifications).map(([key, value]) => ({
           name: key,
           value: value,
         }))
       : [];
 
-    // Prepare the update object
-    const updatedTool = {
-      tool: req.body.tool,
-      brand: req.body.brand,
-      model_number: req.body.model_number,
-      category: req.body.category,
-      size: req.body.size,
-      set_id: req.body.set_id,
-      power_source: req.body.power_source,
-      specifications: [
-        { name: "Voltage", value: req.body.voltage },
-        { name: "RPM", value: req.body.rpm },
-      ],
-      description: req.body.description,
-      image_url: req.body.image_url,
-    };
+    // Update tool in the database
+    const updatedTool = await toolModel.updateTool(
+      id,
+      tool,
+      brand,
+      model_number,
+      category,
+      size,
+      set_id,
+      power_source,
+      specificationsArray,
+      description,
+      image_url,
+    );
 
-    // Find tool by ID and update
-    const response = await Tool.findByIdAndUpdate(toolId, updatedTool, {
-      new: true, // Returns updated document
-      runValidators: true, // Ensures validation rules apply
-    });
-
-    if (response) {
-      res.status(204).send();
+    if (updatedTool) {
+      res.status(200).json(updatedTool);
     } else {
       res.status(404).json({ message: "Failed to update tool. No changes made." });
     }
@@ -164,10 +175,16 @@ toolsController.deleteTool = async (req, res, next) => {
     #swagger.tags = ['Tools']
   */
   try {
-    const toolId = new mongoose.Types.ObjectId(req.params.id);
+    const { id } = req.params;
+
+    // Validate ObjectId before using it
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid ObjectId format" });
+    }
 
     // Find and delete the tool
-    const deletedTool = await Tool.findByIdAndDelete(toolId);
+    const deletedTool = await toolModel.deleteTool(id);
+    // Check if the tool was found and deleted
 
     if (deletedTool) {
       res.status(204).send(); // 204 No Content (successful deletion)
