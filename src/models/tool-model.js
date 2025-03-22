@@ -15,8 +15,12 @@ const SPECIFICATION_TYPES = [
 ];
 
 const toolSchema = new Schema({
-  tool: { type: String, required: true },
-  brand: String,
+  tool: {
+    type: String,
+    required: true,
+    set: (tool) => tool.charAt(0).toUpperCase() + tool.slice(1).toLowerCase(),
+  },
+  brand: { type: String, set: (b) => b.charAt(0).toUpperCase() + b.slice(1).toLowerCase() },
   model_number: String,
   category: String,
   size: String,
@@ -76,6 +80,16 @@ toolModel.createTool = async function (
   image_url,
 ) {
   try {
+    // Convert set_id to ObjectId if provided as a string
+    const validSetId = set_id ? new mongoose.Types.ObjectId(set_id) : null;
+
+    // Validate specifications array to match schema requirements
+    const validSpecifications = specifications
+      ? specifications
+          .filter((spec) => SPECIFICATION_TYPES.includes(spec.name)) // Ensure valid names
+          .map((spec) => ({ name: spec.name, value: spec.value })) // Ensure correct format
+      : [];
+
     // Create and save new user document
     const newTool = await Tool.create({
       tool,
@@ -83,15 +97,15 @@ toolModel.createTool = async function (
       model_number,
       category,
       size,
-      set_id,
+      set_id: validSetId,
       power_source,
-      specifications,
+      specifications: validSpecifications,
       description,
       image_url,
     });
     return newTool;
   } catch (error) {
-    console.error("Error creating user:", error);
+    console.error("Error creating tool:", error);
     throw error; // Let the controller handle the error
   }
 };
@@ -99,9 +113,6 @@ toolModel.createTool = async function (
 /* *****************************
  *   Update tool
  * *************************** */
-const mongoose = require("mongoose");
-const Tool = require("./toolModel"); // Assuming this is your Mongoose model
-
 toolModel.updateTool = async function (
   id,
   tool,

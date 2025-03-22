@@ -2,7 +2,7 @@
  * @desc: This file contains the controller
   functions for the routes in tools.js
  ******************************************/
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const toolModel = require("../models/tool-model");
 
 const toolsController = {};
