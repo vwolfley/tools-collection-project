@@ -40,7 +40,7 @@ usersController.getByUserName = async (req, res, next) => {
   */
   try {
     // const username = req.params.username;
-    const username = req.query.username;
+    const username = req.params.username;
     const result = await userModel.getUser({ username: username });
 
     if (!result) {
@@ -65,7 +65,7 @@ usersController.getByUserEmail = async (req, res, next) => {
   */
   try {
     // const email = req.params.email;
-    const email = req.query.email;
+    const email = req.params.username;
     const result = await userModel.getUser({ email: email });
 
     if (!result) {
@@ -170,7 +170,7 @@ usersController.updateUser = async (req, res, next) => {
 
     // If updating email, check if the new email is already taken
     if (email !== existingUser.email) {
-      const emailExists = await userModel.getUser({email: email});
+      const emailExists = await userModel.getUser({ email: email });
       if (emailExists) {
         return res.status(400).json({ message: "Email is already in use." });
       }

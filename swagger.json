@@ -138,13 +138,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "username",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {

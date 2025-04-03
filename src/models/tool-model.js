@@ -36,14 +36,15 @@ const toolSchema = new Schema({
   image_url: String,
 });
 
-const Tool = mongoose.model("Tool", toolSchema);
+// Create a model from the schema
+toolModel.tool = mongoose.model("Tool", toolSchema);
 
 /* *****************************
  *   Get All Tools
  * *************************** */
 toolModel.getAllTools = async function () {
   try {
-    const tools = await Tool.find({});
+    const tools = await toolModel.tool.find({});
     return tools;
   } catch (error) {
     console.error("Error getting tools:", error);
@@ -56,7 +57,7 @@ toolModel.getAllTools = async function () {
  ****************************/
 toolModel.getTool = async function (parameter) {
   try {
-    const result = await Tool.findOne(parameter).exec();
+    const result = await toolModel.tool.findOne(parameter).exec();
     return result;
   } catch (error) {
     console.error(`Error fetching tool "${parameter}":`, error);
@@ -91,7 +92,7 @@ toolModel.createTool = async function (
       : [];
 
     // Create and save new user document
-    const newTool = await Tool.create({
+    const newTool = await toolModel.tool.create({
       tool,
       brand,
       model_number,
@@ -148,7 +149,7 @@ toolModel.updateTool = async function (
     if (image_url) updateFields.image_url = image_url;
 
     // Update tool document
-    const result = await Tool.findOneAndUpdate(
+    const result = await toolModel.tool.findOneAndUpdate(
       { _id: id }, // Find by MongoDB _id
       { $set: updateFields }, // Update only provided fields
       { new: true, runValidators: true }, // Return updated document & enforce schema validation
@@ -172,7 +173,7 @@ toolModel.deleteTool = async function (toolId) {
     }
 
     // Delete tool document
-    const result = await Tool.findByIdAndDelete(toolId);
+    const result = await toolModel.tool.findByIdAndDelete(toolId);
     return result;
   } catch (error) {
     console.error(`Error deleting tool "${toolId}":`, error);

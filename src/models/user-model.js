@@ -23,14 +23,14 @@ const userSchema = new Schema({
 });
 
 // Create a model from the schema
-const User = mongoose.model("User", userSchema);
+userModel.user = mongoose.model("User", userSchema);
 
 /* *****************************
  *   Get All Users
  * *************************** */
 userModel.getAllUsers = async function () {
   try {
-    const users = await User.find({});
+    const users = await userModel.user.find({});
     return users;
   } catch (error) {
     console.error("Error getting users:", error);
@@ -43,7 +43,7 @@ userModel.getAllUsers = async function () {
  ****************************/
 userModel.getUser = async function (parameter) {
   try {
-    const result = await User.findOne(parameter).exec();
+    const result = await userModel.user.findOne(parameter).exec();
     return result;
   } catch (error) {
     console.error(`Error fetching user "${parameter}":`, error);
@@ -64,7 +64,7 @@ userModel.createUser = async function (
 ) {
   try {
     // Create and save new user document
-    const newUser = await User.create({
+    const newUser = await userModel.user.create({
       username: username.toLowerCase(),
       firstName,
       lastName,
@@ -91,7 +91,7 @@ userModel.updateUser = async function (username, firstName, lastName, email, pho
      if (email !== undefined) updateFields.email = email;
      if (phoneNumber !== undefined) updateFields.phoneNumber = phoneNumber;
     // Update user document
-    const result = await User.findOneAndUpdate(
+    const result = await userModel.user.findOneAndUpdate(
       { username}, // Find user by current username
       { $set: updateFields  }, // Update only provided fields
       { new: true, runValidators: true }, // Return updated document & enforce schema validation
@@ -108,7 +108,7 @@ userModel.updateUser = async function (username, firstName, lastName, email, pho
  * *************************** */
 userModel.deleteUser = async function (username) {
   try {
-    const result = await User.findOneAndDelete({ username: username.toLowerCase() }).exec();
+    const result = await userModel.user.findOneAndDelete({ username: username.toLowerCase() }).exec();
     return result;
   } catch (error) {
     console.error(`Error deleting user "${username}":`, error);
