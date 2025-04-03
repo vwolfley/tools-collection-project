@@ -51,7 +51,6 @@ app.use((req, res, next) => {
 app.use(auth(config));
 
 // Import the routes from the routes folder
-// app.use("/", require("./src/routes"));
 app.use("/", require("./src/routes"));
 
 // Swagger
