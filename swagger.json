@@ -138,13 +138,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "username",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -546,10 +539,7 @@
                   "power_source": {
                     "example": "any"
                   },
-                  "voltage": {
-                    "example": "any"
-                  },
-                  "rpm": {
+                  "specifications": {
                     "example": "any"
                   },
                   "description": {
@@ -601,8 +591,8 @@
         "tags": [
           "Tools"
         ],
-        "summary": "Update a existing tool by id",
-        "description": "Update a existing tool in the database by id",
+        "summary": "Update an existing tool by id",
+        "description": "Update an existing tool in the database by id",
         "parameters": [
           {
             "name": "id",
@@ -614,8 +604,8 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -636,9 +626,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "specifications": {
-                    "example": "any"
-                  },
                   "tool": {
                     "example": "any"
                   },
@@ -660,10 +647,7 @@
                   "power_source": {
                     "example": "any"
                   },
-                  "voltage": {
-                    "example": "any"
-                  },
-                  "rpm": {
+                  "specifications": {
                     "example": "any"
                   },
                   "description": {
@@ -697,6 +681,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
