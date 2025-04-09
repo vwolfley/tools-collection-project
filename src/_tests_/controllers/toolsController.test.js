@@ -3,7 +3,6 @@ const toolModel = require("../../models/tool-model"); // Adjust path as needed
 const mongodb = require("../../database/mongo-connect"); // Adjust path as needed
 
 jest.mock("../../database/mongo-connect"); // Mock MongoDB module
-
 jest.mock("../../models/tool-model", () => ({
   getAllTools: jest.fn(),
   getTool: jest.fn(),
