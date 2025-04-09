@@ -45,7 +45,7 @@ describe("toolsController.getAllTools", () => {
     toolModel.getAllTools.mockRejectedValue(mockError); // Simulate error
 
     await toolsController.getAllTools(req, res, next);
-;
+
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       message: "An unexpected error occurred.",
