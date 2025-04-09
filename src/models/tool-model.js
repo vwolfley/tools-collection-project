@@ -91,7 +91,7 @@ toolModel.createTool = async function (
           .map((spec) => ({ name: spec.name, value: spec.value })) // Ensure correct format
       : [];
 
-    // Create and save new user document
+    // Create and save new tools document
     const newTool = await toolModel.tool.create({
       tool,
       brand,
