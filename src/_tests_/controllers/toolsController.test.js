@@ -1,9 +1,15 @@
 const toolsController = require("../../controllers/toolsController"); // Adjust path as needed
-const mongodb = require("../db/mongo"); // Adjust path as needed
+const toolModel = require("../../models/tool-model"); // Adjust path as needed
+const mongodb = require("../../database/mongo-connect"); // Adjust path as needed
 
-jest.mock("../db/mongo"); // Mock MongoDB module
+jest.mock("../../database/mongo-connect"); // Mock MongoDB module
 
-describe("toolsController.getAll", () => {
+jest.mock("../../models/tool-model", () => ({
+  getAllTools: jest.fn(),
+  getTool: jest.fn(),
+}));
+
+describe("toolsController.getAllTools", () => {
   let req, res, next, mockDb, mockCollection, mockCursor;
 
   beforeEach(() => {
@@ -24,14 +30,11 @@ describe("toolsController.getAll", () => {
 
   test("should return all tools with status 200", async () => {
     const mockTools = [{ name: "Hammer" }, { name: "Screwdriver" }];
-    mockCursor.toArray.mockResolvedValue(mockTools);
+    toolModel.getAllTools.mockResolvedValue(mockTools);
 
-    await toolsController.getAll(req, res, next);
+    await toolsController.getAllTools(req, res, next);
 
-    expect(mongodb.getDb).toHaveBeenCalled();
-    expect(mockDb.collection).toHaveBeenCalledWith("tools");
-    expect(mockCollection.find).toHaveBeenCalled();
-    expect(mockCursor.toArray).toHaveBeenCalled();
+    expect(toolsController.getAllTools)
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "application/json");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockTools);
@@ -39,14 +42,10 @@ describe("toolsController.getAll", () => {
 
   test("should return 500 on unexpected error", async () => {
     const mockError = new Error("Database error");
-    mockCursor.toArray.mockRejectedValue(mockError);
+    toolModel.getAllTools.mockRejectedValue(mockError); // Simulate error
 
-    await toolsController.getAll(req, res, next);
-
-    expect(mongodb.getDb).toHaveBeenCalled();
-    expect(mockDb.collection).toHaveBeenCalledWith("tools");
-    expect(mockCollection.find).toHaveBeenCalled();
-    expect(mockCursor.toArray).toHaveBeenCalled();
+    await toolsController.getAllTools(req, res, next);
+;
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       message: "An unexpected error occurred.",
