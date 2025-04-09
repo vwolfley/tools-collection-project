@@ -1,29 +1,39 @@
 // To run this test, use the following command:
 // npx jest app.test.js
 
+const mongoose = require("mongoose");
+const { MongoMemoryServer } = require("mongodb-memory-server");
 const request = require("supertest");
-const server = require("../../server");
 const app = require("../../app");
 
+let mongoServer;
+
 // Mock the database module
-jest.mock("../database/mongoose-connect.js", () => ({
+jest.mock("../database/mongoose-connect", () => ({
   query: jest.fn(),
 }));
 
 const { query } = require("./db");
 
-describe("server", () => {
-  beforeAll(async () => {
-    await server.start();
-  });
+beforeAll(async () => {
+  mongoServer = await MongoMemoryServer.create();
+  const mongoUri = mongoServer.getUri();
+  await mongoose.connect(mongoUri);
+});
 
-  afterAll(async () => {
-    await server.stop?.(); // Only call stop if it exists
+afterAll(async () => {
+  await mongoose.disconnect();
+  await mongoServer.stop();
+});
+
+describe("app", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
   it("should start the server successfully", async () => {
     const mockListen = jest.spyOn(app, "listen").mockImplementation(() => {});
-    await server.start();
+    await app.start();
     expect(mockListen).toHaveBeenCalled();
     mockListen.mockRestore();
   });
@@ -33,7 +43,7 @@ describe("server", () => {
       throw new Error("Failed to start server");
     });
 
-    await expect(server.start()).rejects.toThrow("Failed to start server");
+    await expect(app.start()).rejects.toThrow("Failed to start server");
     mockListen.mockRestore();
   });
 
