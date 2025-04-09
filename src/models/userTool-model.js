@@ -15,9 +15,9 @@ const locations = [
 ];
 
 const userToolSchema = new Schema({
-  user_id: { type: ObjectId, ref: "User" },
-  tool_id: { type: ObjectId, ref: "Tool" },
-  set_id: { type: ObjectId, ref: "ToolSet" },
+  user_id: { type: ObjectId, ref: "user" },
+  tool_id: { type: ObjectId, ref: "tool" },
+  set_id: { type: ObjectId, ref: "toolSet" },
   serial_number: String,
   condition: {
     type: String,
