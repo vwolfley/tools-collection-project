@@ -1,5 +1,4 @@
 const usersController = require("../../controllers/usersController"); // Adjust the path as needed
-const User = require("../../models/user-model"); // Adjust the path as needed
 const userModel = require("../../models/user-model"); // Adjust the path as needed
 
 jest.mock("../../models/user-model", () => ({

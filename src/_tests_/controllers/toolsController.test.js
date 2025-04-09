@@ -1,6 +1,5 @@
 const toolsController = require("../../controllers/toolsController"); // Adjust path as needed
 const toolModel = require("../../models/tool-model"); // Adjust path as needed
-const mongodb = require("../../database/mongo-connect"); // Adjust path as needed
 
 jest.mock("../../database/mongo-connect"); // Mock MongoDB module
 jest.mock("../../models/tool-model", () => ({
@@ -8,8 +7,9 @@ jest.mock("../../models/tool-model", () => ({
   getTool: jest.fn(),
 }));
 
+
 describe("toolsController.getAllTools", () => {
-  let req, res, next, mockDb, mockCollection, mockCursor;
+  let req, res, next;
 
   beforeEach(() => {
     req = {}; // Mock request object (no params needed)
@@ -19,12 +19,6 @@ describe("toolsController.getAllTools", () => {
       json: jest.fn(),
     };
     next = jest.fn();
-
-    // Mock MongoDB methods
-    mockCursor = { toArray: jest.fn() };
-    mockCollection = { find: jest.fn().mockReturnValue(mockCursor) };
-    mockDb = { collection: jest.fn().mockReturnValue(mockCollection) };
-    mongodb.getDb.mockReturnValue({ db: jest.fn().mockReturnValue(mockDb) });
   });
 
   test("should return all tools with status 200", async () => {
