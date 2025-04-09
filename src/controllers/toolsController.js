@@ -80,7 +80,7 @@ toolsController.createTool = async (req, res, next) => {
       image_url,
     } = req.body;
 
-    // Create and save new user document
+    // Create and save new tool document
     const newTool = await toolModel.createTool(
       tool,
       brand,

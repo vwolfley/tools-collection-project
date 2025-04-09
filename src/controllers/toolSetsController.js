@@ -3,21 +3,21 @@
   functions for the routes in toolSets.js
  ******************************************/
 const mongoose = require("mongoose");
-const ToolSet = require("../models/toolSet-model");
+const toolSetModel = require("../models/toolSet-model");
 
 const toolSetsController = {};
 
 /* **************************
  * Get all toolSets
  ****************************/
-toolSetsController.getAll = async (req, res, next) => {
+toolSetsController.getAllToolSets = async (req, res, next) => {
   /*
     #swagger.summary = 'Get all toolSets'
     #swagger.description = 'Returns all toolSets'
     #swagger.tags = ['ToolSets']
   */
   try {
-    const toolSets = await ToolSet.find({});
+    const toolSets = await toolSetModel.getAllToolSets();
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(toolSets);
   } catch (error) {
@@ -27,9 +27,9 @@ toolSetsController.getAll = async (req, res, next) => {
 };
 
 /* **************************
- * Get tool by id
+ * Get tool set by id
  ****************************/
-toolSetsController.getToolSet = async (req, res, next) => {
+toolSetsController.getToolSetByID = async (req, res, next) => {
   /*
     #swagger.summary = 'Get toolSet by id'
     #swagger.description = 'Returns a toolSet with specified id'
@@ -43,7 +43,7 @@ toolSetsController.getToolSet = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid toolSet ID format." });
     }
 
-    const toolSet = await ToolSet.findById(id);
+    const toolSet = await toolSetModel.getToolSet({ _id: id });
 
     if (!toolSet) {
       return res.status(404).json({ message: "ToolSet not found." });
@@ -80,12 +80,12 @@ toolSetsController.createToolSet = async (req, res, next) => {
     };
 
     // Use Mongoose to create a new document
-    const newToolSet = new ToolSet.create(toolSetData);
+    const newToolSet = new toolSetModel.createToolSet(toolSetData);
 
     res.setHeader("Content-Type", "application/json");
     res.status(201).json({
       message: "ToolSet created successfully.",
-      toolSetId: savedToolSet._id,
+      toolSetId: newToolSet._id,
     });
   } catch (error) {
     console.error("Error creating toolSet:", error);
@@ -128,7 +128,7 @@ toolSetsController.updateToolSet = async (req, res, next) => {
         : [],
     };
     // Find toolset by ID and update
-    const response = await ToolSet.findByIdAndUpdate(toolSetId, toolSetData);
+    const response = await toolSetModel.updateToolSet(id, toolSetData);
 
     if (response) {
       res.status(204).send();
@@ -151,17 +151,24 @@ toolSetsController.deleteToolSet = async (req, res, next) => {
     #swagger.tags = ['ToolSets']
   */
   try {
-    const toolSetId = new mongoose.Types.ObjectId(req.params.id);
-    // Find and delete the toolset by ID
-    const response = await ToolSet.findByIdAndDelete(toolSetId);
+    const { id } = req.params;
 
-    if (response) {
+    // Validate ObjectId before using it
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid ObjectId format" });
+    }
+
+    // Find and delete the tool
+    const deletedToolSet = await toolSetModel.deleteToolSet(id);
+    // Check if the tool was found and deleted
+
+    if (deletedToolSet) {
       res.status(204).send(); // 204 No Content (successful deletion)
     } else {
-      res.status(404).json({ message: "ToolSet not found." });
+      res.status(404).json({ message: "Tool set not found." });
     }
   } catch (error) {
-    console.error("Error deleting toolSet:", error);
+    console.error("Error deleting tool set:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
   }
 };
