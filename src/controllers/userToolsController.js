@@ -43,19 +43,19 @@ userToolsController.getUserToolByID = async (req, res, next) => {
 
     // Validate the ObjectId before querying
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: "Invalid tool ID format." });
+      return res.status(400).json({ message: "Invalid user tool ID format." });
     }
 
     const tool = await userToolModel.getUserTool({ _id: id });
 
     if (!tool) {
-      return res.status(404).json({ message: "Tool not found." });
+      return res.status(404).json({ message: "User Tool not found." });
     }
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(tool);
   } catch (error) {
-    console.error("Error getting tool:", error);
+    console.error("Error getting user tool:", error);
     res.status(500).json({ message: "An unexpected error occurred.", error: error.message });
   }
 };

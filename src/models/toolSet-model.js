@@ -34,7 +34,7 @@ toolSetModel.getAllToolSets = async function () {
 /* **************************
  * Get tool set by parameter
  ****************************/
-tooSetModel.getToolSet = async function (parameter) {
+toolSetModel.getToolSet = async function (parameter) {
   try {
     const result = await toolSetModel.toolSet.findOne(parameter).exec();
     return result;

@@ -4,12 +4,12 @@ const router = express.Router();
 const userToolsController = require("../controllers/userToolsController");
 const utilities = require("../utilities/");
 const validate = require("../utilities/userTools-validation");
-const { auth, requiresAuth } = require('express-openid-connect');
+const { auth, requiresAuth } = require("express-openid-connect");
 
 // Get all userTools
 router.get("/", requiresAuth(), userToolsController.getAllUserTools);
 // Get userTools by id
-router.get("/:id", userToolsController.getUserTool);
+router.get("/:id", userToolsController.getUserToolByID);
 // Insert one userTools into the database
 router.post(
   "/",
